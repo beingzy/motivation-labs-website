@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AlphabetGrid from "@/components/AlphabetGrid";
+import ScreenshotStack from "@/components/ScreenshotStack";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
 export default function Home() {
@@ -147,15 +148,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: real screenshot */}
-            <div className="screenshot-card">
-              <Image
-                src="/images/pay/07-payouts-list.png"
-                alt="Motivation Pay — Payouts view"
-                width={720}
-                height={480}
-                className="w-full h-auto block"
-              />
+            {/* Right: screenshot stack with hover fan-out */}
+            <div className="pb-10">
+              <ScreenshotStack />
             </div>
           </div>
         </div>

@@ -7,12 +7,52 @@ const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 const activeLetters: Record<
   string,
-  { slug: string; label: string; comingSoon: boolean; href: string }
+  {
+    slug: string;
+    label: string;
+    comingSoon: boolean;
+    href: string;
+    bg: string;
+    bgHover: string;
+    text: string;
+  }
 > = {
-  K: { slug: "kids", label: "Kids", comingSoon: true, href: "/#kids" },
-  M: { slug: "me", label: "Me", comingSoon: true, href: "/#me" },
-  P: { slug: "pay", label: "Pay", comingSoon: false, href: "/pay" },
-  T: { slug: "team", label: "Team", comingSoon: true, href: "/#team" },
+  K: {
+    slug: "kids",
+    label: "Kids",
+    comingSoon: true,
+    href: "/#kids",
+    bg: "bg-amber-300",
+    bgHover: "hover:bg-amber-400",
+    text: "text-amber-900",
+  },
+  M: {
+    slug: "me",
+    label: "Me",
+    comingSoon: true,
+    href: "/#me",
+    bg: "bg-blue-300",
+    bgHover: "hover:bg-blue-400",
+    text: "text-blue-900",
+  },
+  P: {
+    slug: "pay",
+    label: "Pay",
+    comingSoon: false,
+    href: "/pay",
+    bg: "bg-emerald-400",
+    bgHover: "hover:bg-emerald-500",
+    text: "text-emerald-900",
+  },
+  T: {
+    slug: "team",
+    label: "Team",
+    comingSoon: true,
+    href: "/#team",
+    bg: "bg-violet-300",
+    bgHover: "hover:bg-violet-400",
+    text: "text-violet-900",
+  },
 };
 
 export default function AlphabetGrid() {
@@ -29,7 +69,7 @@ export default function AlphabetGrid() {
               <Link
                 key={letter}
                 href={product.href}
-                className="matrix-cell active group bg-black border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex flex-col items-center justify-center relative overflow-hidden"
+                className={`matrix-cell active group ${product.bg} ${product.bgHover} border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-150`}
                 onClick={() =>
                   trackEvent("matrix_click", {
                     letter,
@@ -37,16 +77,23 @@ export default function AlphabetGrid() {
                   })
                 }
               >
-                <span className="text-white text-3xl font-black group-hover:scale-110 transition-transform">
+                <span
+                  className={`${product.text} text-3xl font-black group-hover:scale-110 transition-transform`}
+                >
                   {letter}
                 </span>
-                <span className="absolute bottom-2 text-[9px] font-black text-white tracking-widest uppercase">
+                <span
+                  className={`absolute bottom-2 text-[9px] font-black ${product.text} tracking-widest uppercase opacity-70`}
+                >
                   {product.label}
                 </span>
-                {product.comingSoon && (
-                  <span className="absolute top-1.5 right-1.5 text-[7px] font-black text-white/50 uppercase tracking-wider">
+                {product.comingSoon ? (
+                  <span className={`absolute top-1.5 right-1.5 text-[7px] font-black ${product.text} opacity-40 uppercase tracking-wider`}>
                     Soon
                   </span>
+                ) : (
+                  /* Live indicator dot */
+                  <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-emerald-700 opacity-70" />
                 )}
               </Link>
             );

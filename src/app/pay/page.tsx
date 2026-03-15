@@ -33,8 +33,8 @@ const principles = [
     body: "Every action creates a record — payroll created, confirmed, executed, failed. Nothing disappears.",
   },
   {
-    title: "Operations Before Optics",
-    body: "A transaction hash is not enough. Every payment keeps its reason, approver, and status history attached.",
+    title: "Wrong Wallet is Impossible",
+    body: "Recipient addresses are locked at onboarding and enforced at the CEX level. There is no UI path to send funds to an unverified address.",
   },
 ];
 
@@ -141,8 +141,8 @@ export default function PayPage() {
               {
                 avatar: "/images/pay/07_male_curly_dark_hair_aviator_glasses_open_grin.png",
                 name: "Marcus, Ops",
-                quote: "I've sent bonuses from three different exchanges. There's no record of why, who approved, or what it was for.",
-                pain: "No context attached",
+                quote: "We almost wired December payroll to a test wallet from six months ago. Caught it manually. That's not a process — that's luck. One slip and $40k is gone with no recourse.",
+                pain: "One wrong address away",
               },
             ].map((item) => (
               <div
@@ -196,15 +196,19 @@ export default function PayPage() {
                   01
                 </div>
                 <h3 className="text-2xl font-black tracking-tight mb-4">
-                  Your team, fully onboarded.
+                  Your team, onboarded with verified wallets.
                 </h3>
                 <p className="text-notion-gray font-medium leading-relaxed mb-4">
                   Add teammates with their wallet addresses, role, and contract
-                  type. Motivation Pay supports FTEs, contractors, and
-                  advisors — each with their own payment preferences and coin
-                  settings.
+                  type. Every address is verified and locked at onboarding —
+                  payments can only ever go to a pre-approved destination.
+                  No ad-hoc entries, no last-minute edits mid-run.
                 </p>
                 <ul className="space-y-2 text-sm font-medium text-notion-gray">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Whitelist-only payouts — funds only reach verified addresses
+                  </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                     Wallet verification with micro-deposit confirmation
@@ -277,11 +281,13 @@ export default function PayPage() {
                   03
                 </div>
                 <h3 className="text-2xl font-black tracking-tight mb-4">
-                  Execute via CEX — with full context.
+                  Execute via CEX — secured at every layer.
                 </h3>
                 <p className="text-notion-gray font-medium leading-relaxed mb-4">
                   Fund from your Safe multi-sig, route through your exchange,
-                  and pay each recipient in a single run.
+                  and pay each recipient in a single run. The CEX adds a second
+                  layer of address enforcement — withdrawal whitelists mean
+                  funds physically cannot leave to an unregistered destination.
                 </p>
                 {/* CEX logos */}
                 <div className="flex items-center gap-2 flex-wrap mb-5">
@@ -294,6 +300,14 @@ export default function PayPage() {
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                     Safe → CEX fund transfer in one proposal
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    CEX withdrawal whitelist — only pre-approved addresses receive funds
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Enterprise-grade CEX security: 2FA, IP controls, and withdrawal limits
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />

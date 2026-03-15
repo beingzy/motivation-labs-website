@@ -1,26 +1,139 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-notion-bg: #ffffff;
+  --color-notion-text: #37352f;
+  --color-notion-gray: #787774;
+  --color-notion-border: #000000;
+  --font-sans: var(--font-inter);
+  --font-hand: var(--font-gochi-hand);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-notion-bg);
+  color: var(--color-notion-text);
+}
+
+/* Notion-style card */
+.notion-card {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease;
+}
+
+.notion-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+}
+
+/* Notion-style button */
+.btn-notion {
+  border: 2px solid #000;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.1s ease;
+}
+
+.btn-notion:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+}
+
+/* Matrix grid cells */
+.matrix-cell {
+  transition: all 0.2s ease;
+}
+
+.matrix-cell.active:hover {
+  background-color: #f3f3f3;
+  transform: scale(0.98);
+}
+
+/* Dashboard container for product mockups */
+.dashboard-container {
+  background: white;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+}
+
+.dashboard-header {
+  border-bottom: 2px solid black;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
+
+.dashboard-sidebar {
+  border-right: 2px solid black;
+  width: 12rem;
+  background: #fbfbfa;
+  display: none;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard-sidebar {
+    display: flex;
+  }
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow: auto;
+  background: white;
+}
+
+.metric-card {
+  border: 2px solid black;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background: white;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.data-table th {
+  text-align: left;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid black;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.data-table td {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Screenshot showcase */
+.screenshot-card {
+  border: 2px solid #000;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s ease;
+}
+
+.screenshot-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
 }

@@ -1,0 +1,38 @@
+# Motivation Labs
+
+> Motivation Labs is a lean, AI-native software studio building tools for people who take their lives and work seriously — and for the AI agents that work alongside them.
+
+## About
+
+Motivation Labs LLC is based in San Francisco. We build software products at the intersection of human motivation, behavioral science, and AI-native infrastructure.
+
+## Products
+
+### Motivate Kids
+- URL: /kids
+- A behavior and mindset platform for parents and children ages 3–10. Turns daily chores into lessons on compounding effort and creative agency.
+- Target users: Parents with children aged 3–10
+- Status: Early access
+
+### Motivate Me
+- URL: /me
+- Personal habit-formation powered by social accountability. Public commitments to a small circle of trusted friends dramatically increase follow-through.
+- Target users: Individuals building personal habits
+- Status: Available
+
+### Motivation Pay
+- URL: /pay
+- Stablecoin payroll for AI teams. Instant USDT/USDC payments via a CEX-routed pipeline for globally distributed human-agent hybrid teams.
+- Target users: AI-native companies, DAOs, distributed teams
+- Status: Waitlist
+
+### Motivation Team
+- URL: /team
+- Central hub for onboarding, SaaS management, and API key governance. The operational OS designed for lean human-agent hybrid teams.
+- Target users: Engineering teams, AI-native organizations
+- Status: Demo available
+
+## Contact
+
+- Website: https://motivationlabs.com
+- Location: San Francisco, CA

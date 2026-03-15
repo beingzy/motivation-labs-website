@@ -1,0 +1,105 @@
+# Motivation Labs — Full Documentation
+
+> Motivation Labs is a lean, AI-native software studio building tools for people who take their lives and work seriously — and for the AI agents that work alongside them.
+
+## Company Overview
+
+Motivation Labs LLC is a software studio based in San Francisco. Founded in 2023, the company builds products at the intersection of human motivation, behavioral science, and AI-native infrastructure. The studio operates with a small, focused team of engineers and designers.
+
+### Philosophy
+
+We believe the best tools respect their users' intelligence and autonomy. Every product we build follows these principles:
+- Built for serious people doing serious work
+- AI-native from day one — designed for human-agent hybrid workflows
+- Clean, professional interfaces that get out of the way
+- No dark patterns, no attention hijacking
+
+---
+
+## Product: Motivate Kids (K)
+
+**URL:** /kids
+**Status:** Early access
+**Target Users:** Parents with children aged 3–10
+
+### Description
+A behavior and mindset platform for parents and children ages 3–10. We turn daily chores into lessons on compounding effort and creative agency.
+
+### How It Works
+1. **Daily Quests** — Parents set age-appropriate daily tasks, from tidying up to creative projects. Each completed task earns effort points that compound over time.
+2. **Compounding Effort** — Kids see their effort grow like a garden. Consistent daily work builds momentum, teaching the power of showing up every day.
+3. **Creative Agency** — Beyond chores, kids propose their own projects and set goals. The platform celebrates initiative, not just compliance.
+
+### Key Features
+- Ages 3–10 with age-adaptive complexity
+- Parent dashboard with progress insights
+- No ads, no data selling, no dark patterns
+- Visual compounding effort tracker
+
+---
+
+## Product: Motivate Me (M)
+
+**URL:** /me
+**Status:** Available
+**Target Users:** Individuals building personal habits
+
+### Description
+Personal habit-formation powered by social accountability. Because a commitment made in front of others is a commitment you're more likely to keep.
+
+### How It Works
+1. **Public Commitments** — Declare your goals to a small circle of trusted friends. Research shows public commitment dramatically increases follow-through.
+2. **Social Accountability** — Your friends see your streaks and your breaks. Gentle visibility creates just enough social pressure to keep you going.
+3. **Streak & Momentum** — Visual streak tracking that makes consistency tangible.
+
+### Key Features
+- Invite up to 5 accountability partners
+- Daily check-ins take under 30 seconds
+- Works for fitness, reading, learning, side projects — anything
+- Streak visualization and progress tracking
+
+---
+
+## Product: Motivation Pay (P)
+
+**URL:** /pay
+**Status:** Waitlist
+**Target Users:** AI-native companies, DAOs, distributed teams
+
+### Description
+Built for the AI-native economy. Instant USDT/USDC payments via a CEX-routed pipeline, wrapped in a clean, professional dashboard.
+
+### Key Features
+- **Instant Settlement** — USDT and USDC payments arrive in minutes via stablecoin rails
+- **CEX-Routed Pipeline** — Payments route through centralized exchanges for optimal liquidity and compliance
+- **Agent-Ready** — Pay anyone or anything with a wallet address, including autonomous AI agents
+- Multi-sig wallet support for team treasuries
+- Batch payments to reduce gas costs
+- Full audit trail for compliance and tax reporting
+
+---
+
+## Product: Motivation Team (T)
+
+**URL:** /team
+**Status:** Demo available
+**Target Users:** Engineering teams, AI-native organizations
+
+### Description
+A central hub for onboarding, SaaS management, and API key governance. The operational OS designed for lean human-agent hybrid teams.
+
+### Key Features
+- **Onboarding** — Automated onboarding flows for new humans and agents
+- **SaaS Audit** — Track every subscription, license, and tool your team uses
+- **API Governance** — Centralized API key management with rotation policies, usage tracking, and access controls
+- **Agent Management** — Register, monitor, and manage AI agents as first-class team members
+- Works for teams of 2 or 200
+- Built-in audit logging for compliance
+- API-first — integrates with your existing stack
+
+---
+
+## Contact
+
+- Website: https://motivationlabs.com
+- Location: San Francisco, CA, USA

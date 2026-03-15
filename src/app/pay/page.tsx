@@ -3,37 +3,38 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { productJsonLd } from "@/lib/structured-data";
+import CexBadge from "@/components/CexBadge";
 
 const product = getProduct("pay")!;
 
 export const metadata: Metadata = {
-  title: "Motivation Pay — Stablecoin Payroll for AI-Native Teams",
+  title: "Motivation Pay — Self-Custody Payroll with CEX Privacy",
   description:
-    "Run payroll, bonuses, and reimbursements in USDC — with every payment tracked, auditable, and executable in one click. Built for globally distributed, stablecoin-native teams.",
+    "Your funds stay in your Safe. Payments route through a CEX — keeping on-chain movements private while remaining fully compliant. The financial operations layer for stablecoin-native teams.",
   openGraph: {
-    title: "Motivation Pay — Stablecoin Payroll for AI-Native Teams",
+    title: "Motivation Pay — Self-Custody Payroll with CEX Privacy",
     description:
-      "Run payroll, bonuses, and reimbursements in USDC — with every payment tracked, auditable, and executable in one click.",
+      "Your funds stay in your Safe. Payments route through a CEX — keeping on-chain movements private while remaining fully compliant.",
     type: "website",
   },
 };
 
 const principles = [
   {
-    title: "Stablecoin-First",
-    body: "Built for teams already operating on-chain. USDC and USDT are the rails — not an afterthought.",
+    title: "Self-Custody First",
+    body: "Your treasury never leaves your Safe. You hold the keys — Motivation Pay is the operations layer on top, not a custodian.",
   },
   {
-    title: "Operations Before Optics",
-    body: "A transaction hash is not enough. Every payment keeps its reason, approver, and status history.",
+    title: "CEX Privacy by Design",
+    body: "Routing payments through a CEX breaks the on-chain trace between your treasury and recipients — private by default, compliant by architecture.",
   },
   {
     title: "Auditability by Default",
     body: "Every action creates a record — payroll created, confirmed, executed, failed. Nothing disappears.",
   },
   {
-    title: "Privacy With Control",
-    body: "Sensitive financial data stays controlled. Operators choose what employees see.",
+    title: "Operations Before Optics",
+    body: "A transaction hash is not enough. Every payment keeps its reason, approver, and status history attached.",
   },
 ];
 
@@ -67,11 +68,12 @@ export default function PayPage() {
               </div>
 
               <h1 className="font-hand text-5xl md:text-7xl text-black mb-6 leading-tight max-w-xl">
-                Run stablecoin payroll like a pro.
+                Your keys. Private payments. Full audit trail.
               </h1>
               <p className="text-xl text-black/70 mb-10 font-medium leading-relaxed max-w-lg">
-                Pay your global team in USDC. Every payroll run, bonus, and
-                reimbursement — tracked, auditable, and executable in one place.
+                Funds stay in your Safe. Payouts route through a CEX —
+                untraceable on-chain, fully compliant off-chain. The financial
+                operations layer built for stablecoin-native teams.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
@@ -284,15 +286,9 @@ export default function PayPage() {
                 {/* CEX logos */}
                 <div className="flex items-center gap-2 flex-wrap mb-5">
                   <span className="text-xs font-black text-black/40 uppercase tracking-wider">Supported exchanges</span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-black text-white text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                    OKX
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#0052FF] text-white text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] opacity-50">
-                    Coinbase <span className="text-[8px] opacity-70">Soon</span>
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#F0B90B] text-black text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] opacity-50">
-                    Binance <span className="text-[8px] opacity-70">Soon</span>
-                  </span>
+                  <CexBadge name="OKX" size="md" />
+                  <CexBadge name="Coinbase" size="md" comingSoon />
+                  <CexBadge name="Binance" size="md" comingSoon />
                 </div>
                 <ul className="space-y-2 text-sm font-medium text-notion-gray">
                   <li className="flex items-center gap-2">

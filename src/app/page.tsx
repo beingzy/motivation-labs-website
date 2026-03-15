@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import AlphabetGrid from "@/components/AlphabetGrid";
 import ScreenshotStack from "@/components/ScreenshotStack";
+import CexBadge from "@/components/CexBadge";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
 export default function Home() {
@@ -16,65 +17,73 @@ export default function Home() {
 
       {/* ── Hero ── */}
       <section className="border-b-2 border-black bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-24 md:py-36">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="max-w-6xl mx-auto px-6 py-20 md:py-36">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-emerald-400 text-black text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                <span className="live-dot w-1.5 h-1.5 rounded-full bg-black shrink-0" />
                 Motivation Pay is live
               </div>
-              <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.88]">
+              <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 md:mb-8 leading-[0.88]">
                 Motivation
                 <br />
                 Labs.
               </h1>
-              <p className="text-xl text-black/70 max-w-lg leading-relaxed font-medium mb-10">
+              <p className="text-lg md:text-xl text-black/70 max-w-lg leading-relaxed font-medium mb-8 md:mb-10">
                 A lean, AI-native software studio building tools for people who
                 take their lives and work seriously — and for the AI agents that
                 work alongside them.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 md:gap-4">
                 <Link
                   href="/pay"
-                  className="btn-notion bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
+                  className="btn-notion bg-black text-white px-6 md:px-8 py-3 md:py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
                 >
                   See Motivation Pay →
                 </Link>
                 <a
                   href="#products"
-                  className="btn-notion inline-block bg-white text-black px-8 py-4 rounded-md font-black hover:bg-gray-50 uppercase tracking-wider text-sm border-2 border-black"
+                  className="btn-notion inline-block bg-white text-black px-6 md:px-8 py-3 md:py-4 rounded-md font-black hover:bg-gray-50 uppercase tracking-wider text-sm border-2 border-black"
                 >
                   All Products
                 </a>
               </div>
             </div>
 
-            {/* Stats / brand panel */}
-            <div className="hidden md:block">
-              <div className="border-2 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white p-8">
-                <div className="text-[10px] font-black uppercase tracking-[0.25em] text-black/40 mb-6">
-                  Studio At a Glance
-                </div>
-                <div className="space-y-6">
-                  {[
-                    { num: "4", label: "Products in the ecosystem" },
-                    { num: "1", label: "Live and in production" },
-                    { num: "100%", label: "AI-native from day one" },
-                    { num: "∞", label: "Motivation to build" },
-                  ].map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="flex items-baseline gap-4 border-b border-black/10 pb-5 last:border-0 last:pb-0"
-                    >
-                      <span className="text-4xl font-black tracking-tighter">
-                        {stat.num}
-                      </span>
-                      <span className="text-sm font-medium text-notion-gray">
-                        {stat.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+            {/* Stats panel — visible on all screen sizes */}
+            <div className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] bg-white p-6 md:p-8">
+              <div className="text-[10px] font-black uppercase tracking-[0.25em] text-black/40 mb-4 md:mb-6">
+                Studio At a Glance
+              </div>
+              {/* Mobile: 2×2 grid; Desktop: stacked list */}
+              <div className="grid grid-cols-2 gap-4 md:hidden">
+                {[
+                  { num: "4", label: "Products" },
+                  { num: "1", label: "Live" },
+                  { num: "100%", label: "AI-native" },
+                  { num: "∞", label: "Motivation" },
+                ].map((stat) => (
+                  <div key={stat.label} className="border border-black/10 p-3">
+                    <div className="text-2xl font-black tracking-tighter">{stat.num}</div>
+                    <div className="text-xs font-medium text-notion-gray">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="hidden md:block space-y-6">
+                {[
+                  { num: "4", label: "Products in the ecosystem" },
+                  { num: "1", label: "Live and in production" },
+                  { num: "100%", label: "AI-native from day one" },
+                  { num: "∞", label: "Motivation to build" },
+                ].map((stat) => (
+                  <div
+                    key={stat.label}
+                    className="flex items-baseline gap-4 border-b border-black/10 pb-5 last:border-0 last:pb-0"
+                  >
+                    <span className="text-4xl font-black tracking-tighter">{stat.num}</span>
+                    <span className="text-sm font-medium text-notion-gray">{stat.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -86,15 +95,15 @@ export default function Home() {
 
       {/* ── Featured: Motivation Pay ── */}
       <section
-        className="py-32 border-t-2 border-black bg-[#f2faf5]"
+        className="py-20 md:py-32 border-t-2 border-black bg-[#f2faf5]"
         id="pay"
         aria-label="Motivation Pay"
       >
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
             {/* Left */}
             <div>
-              <div className="flex items-center gap-3 mb-8 flex-wrap">
+              <div className="flex items-center gap-3 mb-6 md:mb-8 flex-wrap">
                 <Image
                   src="/images/pay/motivation_money_logo.png"
                   alt="Motivation Pay"
@@ -105,67 +114,67 @@ export default function Home() {
                 <div className="inline-block px-4 py-1.5 rounded-md border-2 border-black bg-emerald-400 text-black text-[11px] font-black uppercase tracking-[0.15em] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                   P — Motivation Pay
                 </div>
-                {/* Live badge with pulsing dot */}
                 <span className="flex items-center gap-1.5 px-3 py-1 rounded-md border-2 border-black bg-black text-white text-[10px] font-black uppercase tracking-wider">
                   <span className="live-dot w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
                   Live
                 </span>
               </div>
-              <h2 className="font-hand text-5xl md:text-6xl text-black mb-6 leading-tight">
+              <h2 className="font-hand text-4xl md:text-6xl text-black mb-4 md:mb-6 leading-tight">
                 Stablecoin payroll for AI teams.
               </h2>
-              <p className="text-lg text-black/80 mb-8 font-medium leading-relaxed">
-                Pay your global team in USDC — with every payroll run,
-                bonus, and reimbursement tracked and auditable.
+              <p className="text-base md:text-lg text-black/80 mb-6 md:mb-8 font-medium leading-relaxed">
+                Your funds stay in your Safe. Payments route through a CEX —
+                keeping on-chain movements private while remaining fully
+                compliant.
               </p>
-              <ul className="space-y-3 mb-10">
-                <li className="flex items-start gap-3 text-base font-medium">
+              <ul className="space-y-3 mb-8 md:mb-10">
+                <li className="flex items-start gap-3 text-sm md:text-base font-medium">
                   <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                   Payroll, bonuses &amp; reimbursements in one place
                 </li>
-                <li className="flex items-start gap-3 text-base font-medium">
+                <li className="flex items-start gap-3 text-sm md:text-base font-medium">
                   <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                   <span className="flex items-center gap-1.5 flex-wrap">
                     Multi-CEX routing —
-                    <span className="inline-flex items-center px-1.5 py-0.5 bg-black text-white text-[9px] font-black uppercase tracking-wider">OKX</span>
-                    <span className="inline-flex items-center px-1.5 py-0.5 bg-[#0052FF] text-white text-[9px] font-black uppercase tracking-wider opacity-60">Coinbase</span>
-                    <span className="inline-flex items-center px-1.5 py-0.5 bg-[#F0B90B] text-black text-[9px] font-black uppercase tracking-wider opacity-60">Binance</span>
+                    <CexBadge name="OKX" />
+                    <CexBadge name="Coinbase" comingSoon />
+                    <CexBadge name="Binance" comingSoon />
                   </span>
                 </li>
-                <li className="flex items-start gap-3 text-base font-medium">
+                <li className="flex items-start gap-3 text-sm md:text-base font-medium">
                   <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
                   Complete audit trail, export-ready for your CPA
                 </li>
               </ul>
               <Link
                 href="/pay"
-                className="btn-notion inline-block bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
+                className="btn-notion inline-block bg-black text-white px-7 md:px-8 py-3 md:py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
               >
                 Explore Motivation Pay →
               </Link>
             </div>
 
-            {/* Right: screenshot stack with hover fan-out */}
-            <div className="pb-10">
+            {/* Right: screenshot stack */}
+            <div className="pt-4 pb-12 md:pb-10">
               <ScreenshotStack />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── What We Build ── */}
-      <section className="py-24 bg-white border-t-2 border-black border-b-2">
+      {/* ── Our Thesis ── */}
+      <section className="py-16 md:py-24 bg-white border-t-2 border-black border-b-2">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-16">
+          <div className="grid md:grid-cols-3 gap-10 md:gap-16">
             <div className="md:col-span-1">
-              <div className="inline-block px-3 py-1 border-2 border-black text-[10px] font-black uppercase tracking-[0.2em] mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              <div className="inline-block px-3 py-1 border-2 border-black text-[10px] font-black uppercase tracking-[0.2em] mb-4 md:mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                 Our Thesis
               </div>
-              <h2 className="text-3xl font-black tracking-tight leading-tight">
+              <h2 className="text-2xl md:text-3xl font-black tracking-tight leading-tight">
                 Motivation is infrastructure.
               </h2>
             </div>
-            <div className="md:col-span-2 grid sm:grid-cols-2 gap-10">
+            <div className="md:col-span-2 grid grid-cols-2 gap-6 md:gap-10">
               {[
                 {
                   title: "AI-Native First",
@@ -173,7 +182,7 @@ export default function Home() {
                 },
                 {
                   title: "Operational Depth",
-                  body: "We build tools that operators actually rely on. Not demos, not MVPs with futures — production-grade from day one.",
+                  body: "We build tools that operators actually rely on. Not demos — production-grade from day one.",
                 },
                 {
                   title: "Small & Focused",
@@ -181,12 +190,12 @@ export default function Home() {
                 },
                 {
                   title: "Audit by Default",
-                  body: "Every meaningful action in our products creates a record — who, what, why, when. Accountability is not optional.",
+                  body: "Every meaningful action creates a record — who, what, why, when. Accountability is not optional.",
                 },
               ].map((item) => (
                 <div key={item.title}>
-                  <h3 className="font-black mb-2">{item.title}</h3>
-                  <p className="text-sm text-notion-gray font-medium leading-relaxed">
+                  <h3 className="font-black mb-2 text-sm md:text-base">{item.title}</h3>
+                  <p className="text-xs md:text-sm text-notion-gray font-medium leading-relaxed">
                     {item.body}
                   </p>
                 </div>
@@ -197,15 +206,15 @@ export default function Home() {
       </section>
 
       {/* ── Coming Soon ── */}
-      <section className="py-24 bg-black" id="coming-soon">
+      <section className="py-16 md:py-24 bg-black" id="coming-soon">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="inline-block px-3 py-1 border border-white/30 text-white/60 text-[10px] font-black uppercase tracking-wider mb-8">
+          <div className="inline-block px-3 py-1 border border-white/30 text-white/60 text-[10px] font-black uppercase tracking-wider mb-6 md:mb-8">
             What&apos;s Next
           </div>
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-16">
+          <h2 className="text-2xl md:text-4xl font-black tracking-tight text-white mb-10 md:mb-16">
             Three more products in development.
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 letter: "K",
@@ -232,11 +241,12 @@ export default function Home() {
                 href: "/team",
               },
             ].map((product) => (
-              <div
+              <Link
                 key={product.letter}
-                className="border border-white/10 bg-white/5 p-6"
+                href={product.href}
+                className="block border border-white/10 bg-white/5 p-5 md:p-6 hover:bg-white/10 transition-colors group"
               >
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center justify-between mb-4 md:mb-6">
                   <div
                     className={`inline-flex items-center gap-2 px-3 py-1.5 ${product.color} text-black text-[10px] font-black uppercase tracking-wider border-2 border-white/20`}
                   >
@@ -246,13 +256,16 @@ export default function Home() {
                     Soon
                   </span>
                 </div>
-                <h3 className="font-hand text-2xl text-white mb-3 leading-tight">
+                <h3 className="font-hand text-xl md:text-2xl text-white mb-2 md:mb-3 leading-tight">
                   {product.tagline}
                 </h3>
-                <p className="text-sm text-white/50 font-medium leading-relaxed">
+                <p className="text-xs md:text-sm text-white/50 font-medium leading-relaxed mb-4 md:mb-6">
                   {product.desc}
                 </p>
-              </div>
+                <span className="text-[10px] font-black text-white/30 group-hover:text-white/60 uppercase tracking-widest transition-colors">
+                  Learn more →
+                </span>
+              </Link>
             ))}
           </div>
         </div>

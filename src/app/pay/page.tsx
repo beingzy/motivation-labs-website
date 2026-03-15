@@ -54,15 +54,13 @@ export default function PayPage() {
             <div>
               {/* Logo + badge */}
               <div className="flex items-center gap-4 mb-10">
-                <div className="w-14 h-14 border-2 border-black bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-2">
-                  <Image
-                    src="/images/pay/motivation_money_logo.png"
-                    alt="Motivation Pay"
-                    width={44}
-                    height={44}
-                    className="object-contain"
-                  />
-                </div>
+                <Image
+                  src="/images/pay/motivation_money_logo.png"
+                  alt="Motivation Pay"
+                  width={52}
+                  height={52}
+                  className="object-contain logo-walk"
+                />
                 <div className="inline-block px-4 py-1.5 rounded-md border-2 border-black bg-emerald-400 text-black text-[11px] font-black uppercase tracking-[0.15em] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                   P — Motivation Pay
                 </div>
@@ -281,17 +279,25 @@ export default function PayPage() {
                 </h3>
                 <p className="text-notion-gray font-medium leading-relaxed mb-4">
                   Fund from your Safe multi-sig, route through your exchange,
-                  and pay each recipient in a single run. Supports OKX,
-                  Coinbase, and Binance — with more exchanges on the roadmap.
+                  and pay each recipient in a single run.
                 </p>
+                {/* CEX logos */}
+                <div className="flex items-center gap-2 flex-wrap mb-5">
+                  <span className="text-xs font-black text-black/40 uppercase tracking-wider">Supported exchanges</span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-black text-white text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                    OKX
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#0052FF] text-white text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] opacity-50">
+                    Coinbase <span className="text-[8px] opacity-70">Soon</span>
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-[#F0B90B] text-black text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] opacity-50">
+                    Binance <span className="text-[8px] opacity-70">Soon</span>
+                  </span>
+                </div>
                 <ul className="space-y-2 text-sm font-medium text-notion-gray">
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
                     Safe → CEX fund transfer in one proposal
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
-                    OKX, Coinbase, Binance exchange adapters
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
@@ -472,15 +478,13 @@ export default function PayPage() {
       <section className="py-32 bg-[#f2faf5] border-b-2 border-black text-center">
         <div className="max-w-2xl mx-auto px-6">
           <div className="flex justify-center mb-8">
-            <div className="w-16 h-16 border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-3">
-              <Image
-                src="/images/pay/motivation_money_logo.png"
-                alt="Motivation Pay"
-                width={52}
-                height={52}
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src="/images/pay/motivation_money_logo.png"
+              alt="Motivation Pay"
+              width={64}
+              height={64}
+              className="object-contain logo-walk"
+            />
           </div>
           <h2 className="font-hand text-4xl md:text-6xl text-black mb-6 leading-tight">
             From &ldquo;we send stablecoins&rdquo; to

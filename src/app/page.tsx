@@ -94,20 +94,20 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Left */}
             <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 border-2 border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-1.5">
-                  <Image
-                    src="/images/pay/motivation_money_logo.png"
-                    alt="Motivation Pay"
-                    width={32}
-                    height={32}
-                    className="object-contain"
-                  />
-                </div>
+              <div className="flex items-center gap-3 mb-8 flex-wrap">
+                <Image
+                  src="/images/pay/motivation_money_logo.png"
+                  alt="Motivation Pay"
+                  width={36}
+                  height={36}
+                  className="object-contain logo-walk"
+                />
                 <div className="inline-block px-4 py-1.5 rounded-md border-2 border-black bg-emerald-400 text-black text-[11px] font-black uppercase tracking-[0.15em] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                   P — Motivation Pay
                 </div>
-                <span className="px-3 py-1 rounded-md border-2 border-black bg-black text-white text-[10px] font-black uppercase tracking-wider">
+                {/* Live badge with pulsing dot */}
+                <span className="flex items-center gap-1.5 px-3 py-1 rounded-md border-2 border-black bg-black text-white text-[10px] font-black uppercase tracking-wider">
+                  <span className="live-dot w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
                   Live
                 </span>
               </div>
@@ -119,16 +119,23 @@ export default function Home() {
                 bonus, and reimbursement tracked and auditable.
               </p>
               <ul className="space-y-3 mb-10">
-                {[
-                  "Payroll, bonuses & reimbursements in one place",
-                  "Multi-CEX routing — OKX, Coinbase, Binance",
-                  "Complete audit trail, export-ready for your CPA",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-base font-medium">
-                    <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                    {item}
-                  </li>
-                ))}
+                <li className="flex items-start gap-3 text-base font-medium">
+                  <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  Payroll, bonuses &amp; reimbursements in one place
+                </li>
+                <li className="flex items-start gap-3 text-base font-medium">
+                  <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  <span className="flex items-center gap-1.5 flex-wrap">
+                    Multi-CEX routing —
+                    <span className="inline-flex items-center px-1.5 py-0.5 bg-black text-white text-[9px] font-black uppercase tracking-wider">OKX</span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 bg-[#0052FF] text-white text-[9px] font-black uppercase tracking-wider opacity-60">Coinbase</span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 bg-[#F0B90B] text-black text-[9px] font-black uppercase tracking-wider opacity-60">Binance</span>
+                  </span>
+                </li>
+                <li className="flex items-start gap-3 text-base font-medium">
+                  <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+                  Complete audit trail, export-ready for your CPA
+                </li>
               </ul>
               <Link
                 href="/pay"

@@ -11,7 +11,13 @@ const activeLetters: Record<
     slug: string;
     label: string;
     comingSoon: boolean;
-    href: string;          // always links to homepage section
+    href: string;
+    // default (non-hover) state — colored but lighter
+    defaultBg: string;
+    defaultText: string;
+    defaultBadgeBg: string;
+    defaultBadgeText: string;
+    // hover state — full solid color block
     hoverBg: string;
     hoverText: string;
   }
@@ -21,32 +27,48 @@ const activeLetters: Record<
     label: "Kids",
     comingSoon: true,
     href: "/#kids",
+    defaultBg: "bg-amber-200",
+    defaultText: "text-amber-900",
+    defaultBadgeBg: "bg-amber-400",
+    defaultBadgeText: "text-amber-900",
     hoverBg: "hover:bg-amber-400",
-    hoverText: "hover:text-amber-900",
+    hoverText: "hover:text-amber-950",
   },
   M: {
     slug: "me",
     label: "Me",
     comingSoon: true,
     href: "/#me",
+    defaultBg: "bg-blue-200",
+    defaultText: "text-blue-900",
+    defaultBadgeBg: "bg-blue-400",
+    defaultBadgeText: "text-blue-900",
     hoverBg: "hover:bg-blue-400",
-    hoverText: "hover:text-blue-900",
+    hoverText: "hover:text-blue-950",
   },
   P: {
     slug: "pay",
     label: "Pay",
     comingSoon: false,
     href: "/#pay",
+    defaultBg: "bg-emerald-200",
+    defaultText: "text-emerald-900",
+    defaultBadgeBg: "bg-emerald-400",
+    defaultBadgeText: "text-emerald-900",
     hoverBg: "hover:bg-emerald-400",
-    hoverText: "hover:text-emerald-900",
+    hoverText: "hover:text-emerald-950",
   },
   T: {
     slug: "team",
     label: "Team",
     comingSoon: true,
     href: "/#team",
+    defaultBg: "bg-violet-200",
+    defaultText: "text-violet-900",
+    defaultBadgeBg: "bg-violet-400",
+    defaultBadgeText: "text-violet-900",
     hoverBg: "hover:bg-violet-400",
-    hoverText: "hover:text-violet-900",
+    hoverText: "hover:text-violet-950",
   },
 };
 
@@ -65,46 +87,47 @@ export default function AlphabetGrid() {
               <Link
                 key={letter}
                 href={product.href}
-                className={`matrix-cell active group bg-black ${product.hoverBg} border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-150`}
+                className={`matrix-cell active group ${product.defaultBg} ${product.hoverBg} border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-150`}
                 onClick={() =>
-                  trackEvent("matrix_click", {
-                    letter,
-                    product: product.label,
-                  })
+                  trackEvent("matrix_click", { letter, product: product.label })
                 }
               >
                 {/* Letter */}
                 <span
-                  className={`text-white ${product.hoverText} text-3xl font-black group-hover:scale-110 transition-all`}
+                  className={`${product.defaultText} ${product.hoverText} text-3xl font-black group-hover:scale-110 transition-all`}
                 >
                   {letter}
                 </span>
 
-                {/* Product label */}
+                {/* Product name */}
                 <span
-                  className={`absolute bottom-2 text-[9px] font-black text-white/70 ${product.hoverText} tracking-widest uppercase transition-colors`}
+                  className={`absolute bottom-2 text-[9px] font-black ${product.defaultText} ${product.hoverText} tracking-widest uppercase opacity-70 transition-colors`}
                 >
                   {product.label}
                 </span>
 
-                {/* Live dot (Pay only) */}
-                {!product.comingSoon && (
-                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400 group-hover:bg-emerald-700 transition-colors" />
-                )}
-
-                {/* Coming Soon badge — prominent pill */}
+                {/* Coming Soon pill — uses solid badge color for contrast */}
                 {product.comingSoon && (
-                  <span className="absolute top-2 right-0 left-0 flex justify-center">
-                    <span className="px-1.5 py-0.5 bg-white/15 group-hover:bg-black/20 border border-white/30 group-hover:border-black/30 text-white group-hover:text-black/60 text-[7px] font-black uppercase tracking-wider rounded-sm transition-all">
+                  <span
+                    className={`absolute top-1.5 left-0 right-0 flex justify-center`}
+                  >
+                    <span
+                      className={`px-2 py-0.5 ${product.defaultBadgeBg} group-hover:bg-black/20 ${product.defaultBadgeText} group-hover:text-black/60 text-[7px] font-black uppercase tracking-wider border border-black/20 transition-all`}
+                    >
                       Coming Soon
                     </span>
                   </span>
+                )}
+
+                {/* Live dot — Pay only */}
+                {!product.comingSoon && (
+                  <span className="absolute top-2 right-2 live-dot w-2 h-2 rounded-full bg-emerald-600" />
                 )}
               </Link>
             );
           }
 
-          // Inactive cells — grayed out
+          // Inactive — grayed out
           return (
             <div
               key={letter}
@@ -114,7 +137,7 @@ export default function AlphabetGrid() {
             </div>
           );
         })}
-        {/* Filler cells */}
+        {/* Filler */}
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={`filler-${i}`}

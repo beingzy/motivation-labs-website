@@ -124,6 +124,31 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
+/* Logo walking animation */
+@keyframes logo-walk {
+  0%   { transform: rotate(-6deg) translateY(0px); }
+  25%  { transform: rotate(0deg)  translateY(-5px); }
+  50%  { transform: rotate(6deg)  translateY(0px); }
+  75%  { transform: rotate(0deg)  translateY(-5px); }
+  100% { transform: rotate(-6deg) translateY(0px); }
+}
+.logo-walk {
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.logo-walk:hover {
+  animation: logo-walk 0.65s ease-in-out infinite;
+}
+
+/* Pulsing live dot */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.8); }
+}
+.live-dot {
+  animation: live-pulse 2.2s ease-in-out infinite;
+}
+
 /* Screenshot showcase */
 .screenshot-card {
   border: 2px solid #000;

@@ -11,10 +11,9 @@ const activeLetters: Record<
     slug: string;
     label: string;
     comingSoon: boolean;
-    href: string;
-    bg: string;
-    bgHover: string;
-    text: string;
+    href: string;          // always links to homepage section
+    hoverBg: string;
+    hoverText: string;
   }
 > = {
   K: {
@@ -22,36 +21,32 @@ const activeLetters: Record<
     label: "Kids",
     comingSoon: true,
     href: "/#kids",
-    bg: "bg-amber-300",
-    bgHover: "hover:bg-amber-400",
-    text: "text-amber-900",
+    hoverBg: "hover:bg-amber-400",
+    hoverText: "hover:text-amber-900",
   },
   M: {
     slug: "me",
     label: "Me",
     comingSoon: true,
     href: "/#me",
-    bg: "bg-blue-300",
-    bgHover: "hover:bg-blue-400",
-    text: "text-blue-900",
+    hoverBg: "hover:bg-blue-400",
+    hoverText: "hover:text-blue-900",
   },
   P: {
     slug: "pay",
     label: "Pay",
     comingSoon: false,
-    href: "/pay",
-    bg: "bg-emerald-400",
-    bgHover: "hover:bg-emerald-500",
-    text: "text-emerald-900",
+    href: "/#pay",
+    hoverBg: "hover:bg-emerald-400",
+    hoverText: "hover:text-emerald-900",
   },
   T: {
     slug: "team",
     label: "Team",
     comingSoon: true,
     href: "/#team",
-    bg: "bg-violet-300",
-    bgHover: "hover:bg-violet-400",
-    text: "text-violet-900",
+    hoverBg: "hover:bg-violet-400",
+    hoverText: "hover:text-violet-900",
   },
 };
 
@@ -64,12 +59,13 @@ export default function AlphabetGrid() {
       <div className="grid grid-cols-4 md:grid-cols-8 border-t-[3px] border-l-[3px] border-black">
         {alphabet.map((letter) => {
           const product = activeLetters[letter];
+
           if (product) {
             return (
               <Link
                 key={letter}
                 href={product.href}
-                className={`matrix-cell active group ${product.bg} ${product.bgHover} border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-150`}
+                className={`matrix-cell active group bg-black ${product.hoverBg} border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-150`}
                 onClick={() =>
                   trackEvent("matrix_click", {
                     letter,
@@ -77,41 +73,52 @@ export default function AlphabetGrid() {
                   })
                 }
               >
+                {/* Letter */}
                 <span
-                  className={`${product.text} text-3xl font-black group-hover:scale-110 transition-transform`}
+                  className={`text-white ${product.hoverText} text-3xl font-black group-hover:scale-110 transition-all`}
                 >
                   {letter}
                 </span>
+
+                {/* Product label */}
                 <span
-                  className={`absolute bottom-2 text-[9px] font-black ${product.text} tracking-widest uppercase opacity-70`}
+                  className={`absolute bottom-2 text-[9px] font-black text-white/70 ${product.hoverText} tracking-widest uppercase transition-colors`}
                 >
                   {product.label}
                 </span>
-                {product.comingSoon ? (
-                  <span className={`absolute top-1.5 right-1.5 text-[7px] font-black ${product.text} opacity-40 uppercase tracking-wider`}>
-                    Soon
+
+                {/* Live dot (Pay only) */}
+                {!product.comingSoon && (
+                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-emerald-400 group-hover:bg-emerald-700 transition-colors" />
+                )}
+
+                {/* Coming Soon badge — prominent pill */}
+                {product.comingSoon && (
+                  <span className="absolute top-2 right-0 left-0 flex justify-center">
+                    <span className="px-1.5 py-0.5 bg-white/15 group-hover:bg-black/20 border border-white/30 group-hover:border-black/30 text-white group-hover:text-black/60 text-[7px] font-black uppercase tracking-wider rounded-sm transition-all">
+                      Coming Soon
+                    </span>
                   </span>
-                ) : (
-                  /* Live indicator dot */
-                  <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-emerald-700 opacity-70" />
                 )}
               </Link>
             );
           }
+
+          // Inactive cells — grayed out
           return (
             <div
               key={letter}
-              className="matrix-cell border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex items-center justify-center text-notion-gray/30 text-xl font-bold bg-white"
+              className="matrix-cell border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex items-center justify-center text-black/15 text-xl font-bold bg-white"
             >
               {letter}
             </div>
           );
         })}
-        {/* Filler cells for 8-col alignment */}
+        {/* Filler cells */}
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={`filler-${i}`}
-            className="hidden md:flex matrix-cell border-r-[3px] border-b-[3px] border-black h-24 md:h-32 bg-gray-50/50"
+            className="hidden md:flex matrix-cell border-r-[3px] border-b-[3px] border-black h-24 md:h-32 bg-white"
           />
         ))}
       </div>

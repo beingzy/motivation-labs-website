@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { productJsonLd } from "@/lib/structured-data";
-import WaitlistForm from "@/components/WaitlistForm";
 
 const product = getProduct("pay")!;
 
@@ -78,10 +77,12 @@ export default function PayPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="#waitlist"
+                  href="https://motivation-pay.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-notion bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm text-center"
                 >
-                  Join Waitlist
+                  Try Motivation Pay →
                 </a>
                 <Link
                   href="/"
@@ -467,11 +468,8 @@ export default function PayPage() {
         </div>
       </section>
 
-      {/* ── CTA / Waitlist ── */}
-      <section
-        id="waitlist"
-        className="py-32 bg-[#f2faf5] border-b-2 border-black text-center"
-      >
+      {/* ── CTA ── */}
+      <section className="py-32 bg-[#f2faf5] border-b-2 border-black text-center">
         <div className="max-w-2xl mx-auto px-6">
           <div className="flex justify-center mb-8">
             <div className="w-16 h-16 border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-3">
@@ -489,9 +487,16 @@ export default function PayPage() {
             &ldquo;we run financial ops.&rdquo;
           </h2>
           <p className="text-lg text-black/70 mb-10 font-medium">
-            Join the waitlist. Currently piloting with AI-native companies.
+            Motivation Pay is live and ready to use. No waitlist — get started today.
           </p>
-          <WaitlistForm product="Motivation Pay" accentClass="bg-emerald-500" />
+          <a
+            href="https://motivation-pay.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-notion inline-block bg-black text-white px-10 py-5 rounded-md font-black text-base uppercase tracking-wider hover:bg-black/80"
+          >
+            Try Motivation Pay →
+          </a>
         </div>
       </section>
     </>

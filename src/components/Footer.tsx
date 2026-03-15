@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="font-black text-2xl mb-3 tracking-tight">
-              Motivation Labs LLC
+              Motivation Labs
             </div>
             <p className="text-black/60 text-sm leading-relaxed font-medium max-w-xs">
               A lean, AI-native software studio building tools for people who
@@ -94,6 +94,7 @@ export default function Footer() {
 
         <div className="pt-8 border-t-2 border-black text-[10px] font-black text-black/40 flex flex-col md:flex-row justify-between items-center uppercase tracking-[0.2em]">
           <span>&copy; 2024–2025 Motivation Labs LLC. All rights reserved.</span>
+          {/* "Motivation Labs" is the brand; "Motivation Labs LLC" is the registered legal entity */}
           <span className="mt-4 md:mt-0 font-hand text-2xl lowercase tracking-normal text-black opacity-80">
             Focus is the new currency.
           </span>

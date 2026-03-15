@@ -129,12 +129,22 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/pay"
-                className="btn-notion inline-block bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
-              >
-                See Full Product →
-              </Link>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://motivation-pay.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-notion inline-block bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
+                >
+                  Try Now →
+                </a>
+                <Link
+                  href="/pay"
+                  className="btn-notion inline-block bg-white text-black px-8 py-4 rounded-md font-black hover:bg-emerald-50 uppercase tracking-wider text-sm"
+                >
+                  Learn More
+                </Link>
+              </div>
             </div>
 
             {/* Right: real screenshot */}

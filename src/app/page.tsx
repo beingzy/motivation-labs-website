@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import AlphabetGrid from "@/components/AlphabetGrid";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
@@ -89,40 +90,38 @@ export default function Home() {
         aria-label="Motivation Pay"
       >
         <div className="max-w-6xl mx-auto px-6">
-          {/* Section header */}
-          <div className="flex items-center justify-between mb-16">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Left */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 border-2 border-black bg-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-1.5">
+                  <Image
+                    src="/images/pay/motivation_money_logo.png"
+                    alt="Motivation Pay"
+                    width={32}
+                    height={32}
+                    className="object-contain"
+                  />
+                </div>
                 <div className="inline-block px-4 py-1.5 rounded-md border-2 border-black bg-emerald-400 text-black text-[11px] font-black uppercase tracking-[0.15em] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                   P — Motivation Pay
                 </div>
                 <span className="px-3 py-1 rounded-md border-2 border-black bg-black text-white text-[10px] font-black uppercase tracking-wider">
-                  Live Now
+                  Live
                 </span>
               </div>
-              <h2 className="font-hand text-5xl md:text-7xl text-black leading-tight max-w-2xl">
+              <h2 className="font-hand text-5xl md:text-6xl text-black mb-6 leading-tight">
                 Stablecoin payroll for AI teams.
               </h2>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-16 items-start">
-            {/* Left: description + features + CTA */}
-            <div>
-              <p className="text-xl text-black/80 mb-10 font-medium leading-relaxed">
-                Built for the AI-native economy. Collect money in, move money
-                out — with every action tagged with reason, owner, approver, and
-                audit trail. The financial operations layer for globally
-                distributed, stablecoin-native teams.
+              <p className="text-lg text-black/80 mb-8 font-medium leading-relaxed">
+                Pay your global team in USDC — with every payroll run,
+                bonus, and reimbursement tracked and auditable.
               </p>
-              <ul className="space-y-3 mb-12">
+              <ul className="space-y-3 mb-10">
                 {[
-                  "End-to-end payout pipeline from treasury to recipient",
-                  "Payroll, bonuses, reimbursements, and one-off payments",
-                  "Safe multi-sig + OKX withdrawal integration",
-                  "Role-based access — operator and employee separation",
-                  "40+ action audit log with full history",
-                  "OpenAPI 3.1 spec — agent-ready from day one",
+                  "Payroll, bonuses & reimbursements in one place",
+                  "Multi-CEX routing — OKX, Coinbase, Binance",
+                  "Complete audit trail, export-ready for your CPA",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-base font-medium">
                     <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
@@ -134,69 +133,19 @@ export default function Home() {
                 href="/pay"
                 className="btn-notion inline-block bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
               >
-                Full Product Details →
+                See Full Product →
               </Link>
             </div>
 
-            {/* Right: dashboard mockup */}
-            <div className="dashboard-container">
-              <div className="dashboard-header">
-                <div className="flex items-center space-x-2">
-                  <span className="text-emerald-600 font-bold text-lg">&#9670;</span>
-                  <span className="text-[11px] font-black uppercase tracking-wider">
-                    Payroll Control
-                  </span>
-                </div>
-                <span className="px-2 py-0.5 border-2 border-black bg-emerald-100 text-[9px] font-black rounded">
-                  NETWORK LIVE
-                </span>
-              </div>
-              <div className="dashboard-main !p-0 flex flex-col">
-                <div className="p-6 bg-emerald-50 border-b-2 border-black">
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="text-[10px] font-black text-black/40 uppercase">
-                      Pending USDC Batch
-                    </span>
-                    <span className="text-[10px] font-black text-black uppercase">
-                      v2.4
-                    </span>
-                  </div>
-                  <div className="text-4xl font-black text-black">$42,800.00</div>
-                </div>
-                <div className="flex-1 p-4">
-                  <table className="w-full data-table">
-                    <thead>
-                      <tr>
-                        <th>Recipient</th>
-                        <th>Method</th>
-                        <th className="text-right">Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Agent_0x4f...</td>
-                        <td>CEX-Routing</td>
-                        <td className="text-right">$12,400</td>
-                      </tr>
-                      <tr>
-                        <td>Studio_0x92...</td>
-                        <td>Multi-Sig</td>
-                        <td className="text-right">$24,100</td>
-                      </tr>
-                      <tr>
-                        <td>Node_0x11...</td>
-                        <td>Instant</td>
-                        <td className="text-right">$6,300</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="p-4 bg-white border-t-2 border-black mt-auto">
-                  <div className="w-full py-3 bg-black text-white text-xs font-black uppercase tracking-widest rounded border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-center">
-                    Execute Batch
-                  </div>
-                </div>
-              </div>
+            {/* Right: real screenshot */}
+            <div className="screenshot-card">
+              <Image
+                src="/images/pay/07-payouts-list.png"
+                alt="Motivation Pay — Payouts view"
+                width={720}
+                height={480}
+                className="w-full h-auto block"
+              />
             </div>
           </div>
         </div>

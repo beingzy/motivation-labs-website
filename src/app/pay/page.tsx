@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { productJsonLd } from "@/lib/structured-data";
@@ -7,60 +8,33 @@ import WaitlistForm from "@/components/WaitlistForm";
 const product = getProduct("pay")!;
 
 export const metadata: Metadata = {
-  title: "Motivation Pay — Financial Operations for AI-Native Companies",
+  title: "Motivation Pay — Stablecoin Payroll for AI-Native Teams",
   description:
-    "Collect money in, move money out — and keep the business context attached. The financial operations layer for globally distributed, stablecoin-native teams.",
+    "Run payroll, bonuses, and reimbursements in USDC — with every payment tracked, auditable, and executable in one click. Built for globally distributed, stablecoin-native teams.",
   openGraph: {
-    title: "Motivation Pay — Financial Operations for AI-Native Companies",
+    title: "Motivation Pay — Stablecoin Payroll for AI-Native Teams",
     description:
-      "Collect money in, move money out — and keep the business context attached.",
+      "Run payroll, bonuses, and reimbursements in USDC — with every payment tracked, auditable, and executable in one click.",
     type: "website",
   },
 };
 
-const currentCapabilities = [
-  "End-to-end payout pipeline from treasury to recipient",
-  "Safe multi-sig integration with on-chain transaction tracking",
-  "OKX withdrawal pipeline with automated status sync",
-  "Payroll runs for recurring team compensation",
-  "Ad-hoc payments — bonuses, contractors, one-off obligations",
-  "Reimbursements with evidence attachments",
-  "Wallet verification via micro-deposit confirmation",
-  "Duplicate payroll detection with overlap warning",
-  "Encrypted exchange credentials at rest",
-  "Configurable notification privacy controls",
-  "Full audit log with 40+ action types",
-  "Role-based access — operator and employee separation",
-  "Multi-entity management",
-  "Per-employee stablecoin and network preferences",
-  "OpenAPI 3.1 specification",
-];
-
-const roadmapItems = [
-  "Invoice module for stablecoin client collections",
-  "Public payment pages with wallet address and QR code",
-  "On-chain payment detection with automatic reconciliation",
-  "Recurring billing for retainer and subscription revenue",
-  "REST API v1 and MCP server for AI agent access",
-  "Coinbase and Binance exchange adapters",
-];
-
 const principles = [
   {
     title: "Stablecoin-First",
-    body: "Built for teams where stablecoins are the natural operating rail — global, programmable, and agent-compatible from day one.",
+    body: "Built for teams already operating on-chain. USDC and USDT are the rails — not an afterthought.",
   },
   {
     title: "Operations Before Optics",
-    body: "A transaction hash is not enough. Every action preserves the reason, owner, approver, evidence, and status progression.",
+    body: "A transaction hash is not enough. Every payment keeps its reason, approver, and status history.",
   },
   {
     title: "Auditability by Default",
-    body: "Records are useful not just for the operator today, but for the finance lead, accountant, and CPA who review it later.",
+    body: "Every action creates a record — payroll created, confirmed, executed, failed. Nothing disappears.",
   },
   {
     title: "Privacy With Control",
-    body: "Financial operations contain sensitive information. The system reduces unnecessary leakage while maintaining accountability.",
+    body: "Sensitive financial data stays controlled. Operators choose what employees see.",
   },
 ];
 
@@ -77,229 +51,308 @@ export default function PayPage() {
       {/* ── Hero ── */}
       <section className="bg-[#f2faf5] border-b-2 border-black py-24 md:py-36">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="inline-block px-4 py-1.5 rounded-md border-2 border-black bg-emerald-400 text-black text-[11px] font-black uppercase tracking-[0.15em] mb-8 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-            P — Motivation Pay
-          </div>
-          <h1 className="font-hand text-5xl md:text-8xl text-black mb-8 leading-tight max-w-4xl">
-            Financial operations for AI-native companies.
-          </h1>
-          <p className="text-xl md:text-2xl text-black/70 mb-12 font-medium leading-relaxed max-w-2xl">
-            Collect money in, move money out — and keep the business context
-            attached. One operational layer for globally distributed,
-            stablecoin-native teams.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#waitlist"
-              className="btn-notion bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm text-center"
-            >
-              Join Waitlist
-            </a>
-            <Link
-              href="/#pay"
-              className="btn-notion inline-block bg-white text-black px-8 py-4 rounded-md font-black hover:bg-emerald-50 uppercase tracking-wider text-sm text-center"
-            >
-              Back to Overview
-            </Link>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              {/* Logo + badge */}
+              <div className="flex items-center gap-4 mb-10">
+                <div className="w-14 h-14 border-2 border-black bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-2">
+                  <Image
+                    src="/images/pay/motivation_money_logo.png"
+                    alt="Motivation Pay"
+                    width={44}
+                    height={44}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="inline-block px-4 py-1.5 rounded-md border-2 border-black bg-emerald-400 text-black text-[11px] font-black uppercase tracking-[0.15em] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                  P — Motivation Pay
+                </div>
+              </div>
+
+              <h1 className="font-hand text-5xl md:text-7xl text-black mb-6 leading-tight max-w-xl">
+                Run stablecoin payroll like a pro.
+              </h1>
+              <p className="text-xl text-black/70 mb-10 font-medium leading-relaxed max-w-lg">
+                Pay your global team in USDC. Every payroll run, bonus, and
+                reimbursement — tracked, auditable, and executable in one place.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#waitlist"
+                  className="btn-notion bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm text-center"
+                >
+                  Join Waitlist
+                </a>
+                <Link
+                  href="/"
+                  className="btn-notion inline-block bg-white text-black px-8 py-4 rounded-md font-black hover:bg-emerald-50 uppercase tracking-wider text-sm text-center"
+                >
+                  ← Back
+                </Link>
+              </div>
+            </div>
+
+            {/* Dashboard screenshot */}
+            <div className="hidden md:block">
+              <div className="screenshot-card">
+                <Image
+                  src="/images/pay/04-dashboard.png"
+                  alt="Motivation Pay Dashboard"
+                  width={720}
+                  height={480}
+                  className="w-full h-auto block"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── The Problem ── */}
+      {/* ── Problem ── */}
       <section className="py-24 bg-white border-b-2 border-black">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-8">
-              Most financial tools split your business into disconnected silos.
-            </h2>
-            <p className="text-lg text-notion-gray leading-relaxed mb-6">
-              Traditional payroll handles fiat. Crypto tools handle transfers.
-              Invoicing tools handle billing. Accounting reconstructs the story
-              after the fact.
-            </p>
-            <p className="text-lg text-notion-gray leading-relaxed mb-10">
-              But operators experience money as one continuous flow — revenue
-              expected, revenue received, obligations paid out, and a clean
-              trail at the end of the cycle. When those steps live in different
-              systems, collections are hard to track, payout execution stays
-              manual, payment reasons get lost, and month-end becomes cleanup
-              work.
-            </p>
-            <div className="p-6 border-2 border-black bg-emerald-50 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-              <p className="font-black text-lg text-black leading-snug">
-                Motivation Pay is designed to solve that operations gap — not
-                just the transfer itself.
-              </p>
+          <div className="max-w-2xl mb-16">
+            <div className="inline-block px-3 py-1 border-2 border-black text-[10px] font-black uppercase tracking-[0.2em] mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              The Problem
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Two Core Jobs ── */}
-      <section className="py-24 bg-black text-white">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4 text-white">
-            Two core jobs. One system.
-          </h2>
-          <p className="text-white/60 font-medium mb-16 max-w-xl">
-            Pay-in and pay-out belong together. When you see both sides in one
-            place, you can answer the questions that actually matter.
-          </p>
-          <div className="grid md:grid-cols-2 gap-0 border-2 border-white">
-            {/* Pay-Out — Live */}
-            <div className="p-10 border-b-2 md:border-b-0 md:border-r-2 border-white">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="px-2 py-0.5 bg-emerald-400 text-black text-[10px] font-black uppercase tracking-wider rounded">
-                  Live Today
-                </span>
-              </div>
-              <h3 className="text-2xl font-black mb-4">Pay-Out</h3>
-              <p className="text-white/70 leading-relaxed mb-8">
-                Run global payments for your team — payroll, reimbursements, and
-                ad-hoc obligations — with documentation, controls, and an audit
-                trail baked in.
-              </p>
-              <ul className="space-y-2 text-white/70 text-sm font-medium">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  Payroll runs for recurring compensation
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  Ad-hoc payments to one or multiple recipients
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  Reimbursements with evidence attachments
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
-                  Safe multi-sig + OKX CEX pipeline
-                </li>
-              </ul>
-            </div>
-            {/* Pay-In — Roadmap */}
-            <div className="p-10 opacity-80">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="px-2 py-0.5 border border-white/30 text-white/60 text-[10px] font-black uppercase tracking-wider rounded">
-                  Roadmap
-                </span>
-              </div>
-              <h3 className="text-2xl font-black mb-4">Pay-In</h3>
-              <p className="text-white/70 leading-relaxed mb-8">
-                Collect stablecoin funding from clients in a structured,
-                reconcilable way — invoices, payment pages, and recurring billing
-                for retainer-based work.
-              </p>
-              <ul className="space-y-2 text-white/70 text-sm font-medium">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
-                  Stablecoin invoice creation with line items
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
-                  Public payment pages with QR code
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
-                  On-chain payment detection and reconciliation
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
-                  Recurring billing for retainer revenue
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── What It Is / Is Not ── */}
-      <section className="py-24 bg-white border-b-2 border-black">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-          <div>
-            <h2 className="text-2xl font-black tracking-tight mb-8 uppercase">
-              What Motivation Pay is
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight">
+              Stablecoin teams outgrew wallets.
+              <br />
+              They never got proper finance ops.
             </h2>
-            <ul className="space-y-4">
-              {[
-                "A financial operations platform",
-                "Pay-in and pay-out in one system",
-                "Built around documentation, controls, and audit trail",
-                "Designed for globally distributed, stablecoin-native teams",
-                "CPA-grade reporting support",
-                "AI-agent-ready infrastructure",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-base font-medium"
-                >
-                  <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
-          <div>
-            <h2 className="text-2xl font-black tracking-tight mb-8 uppercase">
-              What it is not
-            </h2>
-            <ul className="space-y-4">
-              {[
-                "A fiat on-ramp or fiat off-ramp",
-                "A banking-as-a-service layer",
-                "A general crypto wallet product",
-                "A broad trading platform",
-                "A full accounting system replacement",
-                "A consumer-facing payments app",
-              ].map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 text-base font-medium text-notion-gray"
-                >
-                  <span className="mt-1.5 w-2 h-2 rounded-full bg-black/20 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 text-sm font-medium text-notion-gray border-l-4 border-black pl-4">
-              Motivation Pay starts once your organization is already operating
-              in stablecoins. We focus on financial operations, not fiat
-              conversion.
-            </p>
-          </div>
-        </div>
-      </section>
 
-      {/* ── Current Capabilities ── */}
-      <section className="py-24 bg-[#f2faf5] border-b-2 border-black">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center gap-4 mb-4">
-            <h2 className="text-3xl md:text-4xl font-black tracking-tight">
-              Live today
-            </h2>
-            <span className="px-3 py-1 border-2 border-black bg-emerald-400 text-black text-[10px] font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-              In production
-            </span>
-          </div>
-          <p className="text-lg text-notion-gray mb-12 max-w-xl font-medium">
-            These are current product capabilities, not roadmap claims.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {currentCapabilities.map((cap) => (
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                avatar: "/images/pay/01_male_short_side_parted_black_hair_open_mouth.png",
+                name: "Alex, Founder",
+                quote: "We pay 12 people globally in USDC. Every month it's a spreadsheet, 3 wallet apps, and prayer.",
+                pain: "No payroll layer",
+              },
+              {
+                avatar: "/images/pay/04_female_long_straight_black_hair_gentle_smile.png",
+                name: "Sarah, Finance Lead",
+                quote: "Our auditors ask for payment history. I export wallet transactions and try to explain what each one meant.",
+                pain: "No audit trail",
+              },
+              {
+                avatar: "/images/pay/07_male_curly_dark_hair_aviator_glasses_open_grin.png",
+                name: "Marcus, Ops",
+                quote: "I've sent bonuses from three different exchanges. There's no record of why, who approved, or what it was for.",
+                pain: "No context attached",
+              },
+            ].map((item) => (
               <div
-                key={cap}
-                className="flex items-start gap-3 p-4 bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+                key={item.name}
+                className="p-6 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] bg-white"
               >
-                <span className="mt-1 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                <span className="text-sm font-medium">{cap}</span>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-12 h-12 border-2 border-black bg-gray-50 rounded-full overflow-hidden flex items-center justify-center shrink-0">
+                    <Image
+                      src={item.avatar}
+                      alt={item.name}
+                      width={48}
+                      height={48}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <div className="font-black text-sm">{item.name}</div>
+                    <div className="text-[10px] font-black uppercase tracking-wider text-black/30">
+                      {item.pain}
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm text-notion-gray font-medium leading-relaxed italic">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Product Principles ── */}
+      {/* ── Product Walkthrough ── */}
+      <section className="py-24 bg-[#f2faf5] border-b-2 border-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-16">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
+              From setup to paid — in one tool.
+            </h2>
+            <p className="text-lg text-notion-gray font-medium">
+              Motivation Pay handles the full payment lifecycle, with the
+              context your finance team actually needs.
+            </p>
+          </div>
+
+          <div className="space-y-20">
+            {/* Step 1 */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="w-10 h-10 border-2 border-black flex items-center justify-center font-black text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6">
+                  01
+                </div>
+                <h3 className="text-2xl font-black tracking-tight mb-4">
+                  Your team, fully onboarded.
+                </h3>
+                <p className="text-notion-gray font-medium leading-relaxed mb-4">
+                  Add teammates with their wallet addresses, role, and contract
+                  type. Motivation Pay supports FTEs, contractors, and
+                  advisors — each with their own payment preferences and coin
+                  settings.
+                </p>
+                <ul className="space-y-2 text-sm font-medium text-notion-gray">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Wallet verification with micro-deposit confirmation
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Per-employee coin and network preferences
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Role-based access — operators and employees separated
+                  </li>
+                </ul>
+              </div>
+              <div className="screenshot-card">
+                <Image
+                  src="/images/pay/05-team-list.png"
+                  alt="Team management in Motivation Pay"
+                  width={720}
+                  height={480}
+                  className="w-full h-auto block"
+                />
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1 screenshot-card">
+                <Image
+                  src="/images/pay/07-payouts-list.png"
+                  alt="Payouts list in Motivation Pay"
+                  width={720}
+                  height={480}
+                  className="w-full h-auto block"
+                />
+              </div>
+              <div className="order-1 md:order-2">
+                <div className="w-10 h-10 border-2 border-black flex items-center justify-center font-black text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6">
+                  02
+                </div>
+                <h3 className="text-2xl font-black tracking-tight mb-4">
+                  Every payment type, one view.
+                </h3>
+                <p className="text-notion-gray font-medium leading-relaxed mb-4">
+                  Monthly payroll, Q1 bonuses, ad-hoc payments, expense
+                  reimbursements — all in a single, clean list. No more
+                  hunting across tools to know what got paid and when.
+                </p>
+                <ul className="space-y-2 text-sm font-medium text-notion-gray">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Payroll runs with per-employee breakdowns
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Ad-hoc bonuses and one-time payments
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Reimbursements with evidence attachments
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="w-10 h-10 border-2 border-black flex items-center justify-center font-black text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6">
+                  03
+                </div>
+                <h3 className="text-2xl font-black tracking-tight mb-4">
+                  Execute via CEX — with full context.
+                </h3>
+                <p className="text-notion-gray font-medium leading-relaxed mb-4">
+                  Fund from your Safe multi-sig, route through your exchange,
+                  and pay each recipient in a single run. Supports OKX,
+                  Coinbase, and Binance — with more exchanges on the roadmap.
+                </p>
+                <ul className="space-y-2 text-sm font-medium text-notion-gray">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Safe → CEX fund transfer in one proposal
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    OKX, Coinbase, Binance exchange adapters
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Per-recipient execution with live status tracking
+                  </li>
+                </ul>
+              </div>
+              <div className="screenshot-card">
+                <Image
+                  src="/images/pay/09-run-detail-confirmed.png"
+                  alt="Payroll run execution in Motivation Pay"
+                  width={720}
+                  height={480}
+                  className="w-full h-auto block"
+                />
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="order-2 md:order-1 screenshot-card">
+                <Image
+                  src="/images/pay/17-audit-log.png"
+                  alt="Audit log in Motivation Pay"
+                  width={720}
+                  height={480}
+                  className="w-full h-auto block"
+                />
+              </div>
+              <div className="order-1 md:order-2">
+                <div className="w-10 h-10 border-2 border-black flex items-center justify-center font-black text-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] mb-6">
+                  04
+                </div>
+                <h3 className="text-2xl font-black tracking-tight mb-4">
+                  Every action, on record.
+                </h3>
+                <p className="text-notion-gray font-medium leading-relaxed mb-4">
+                  A complete, timestamped audit trail — payroll created,
+                  confirmed, executed, who did it and when. Your CPA will
+                  thank you. Your future self will too.
+                </p>
+                <ul className="space-y-2 text-sm font-medium text-notion-gray">
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    40+ tracked action types
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Actor, timestamp, and details on every event
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    Exportable CSV for finance and compliance
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Principles ── */}
       <section className="py-24 bg-white border-b-2 border-black">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-16">
@@ -333,14 +386,19 @@ export default function PayPage() {
                 Pay-in is coming.
               </h2>
               <p className="text-white/70 leading-relaxed font-medium">
-                Motivation Pay is expanding from a strong pay-out product into a
-                complete pay-in plus pay-out financial operating system. The
-                items below are deliberate product directions — not vague future
-                positioning.
+                Motivation Pay is expanding from a strong pay-out product
+                into a complete financial operating system — collecting client
+                revenue in, paying team out, all in one place.
               </p>
             </div>
             <ul className="space-y-3">
-              {roadmapItems.map((item) => (
+              {[
+                "Invoice module for stablecoin client collections",
+                "Public payment pages with wallet address and QR code",
+                "On-chain payment detection with auto-reconciliation",
+                "REST API v1 and MCP server for AI agent access",
+                "Additional CEX adapters — Kraken, Bybit",
+              ].map((item) => (
                 <li
                   key={item}
                   className="flex items-start gap-3 p-4 border border-white/10 bg-white/5"
@@ -356,67 +414,82 @@ export default function PayPage() {
         </div>
       </section>
 
-      {/* ── Ideal Customers ── */}
+      {/* ── Who It's For ── */}
       <section className="py-24 bg-white border-b-2 border-black">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-black tracking-tight mb-4">
             Built for teams like yours
           </h2>
           <p className="text-notion-gray font-medium mb-12 max-w-xl">
-            Motivation Pay is especially well suited for operators who need more
-            control than a wallet alone can provide.
+            If your team operates in stablecoins and needs more than a wallet,
+            Motivation Pay was built for you.
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
+                avatar: "/images/pay/05_female_black_bob_round_glasses_heart_mouth.png",
                 label: "AI-native startups",
-                desc: "Lean teams with global reach and agent-assisted workflows.",
+                desc: "Lean teams with global reach, stablecoin treasuries, and agent-assisted workflows.",
               },
               {
-                label: "Consulting & agency firms",
-                desc: "Mixed project-based and recurring client revenue to collect.",
-              },
-              {
+                avatar: "/images/pay/02_male_swept_up_dark_hair_furrowed_brows_open_mouth.png",
                 label: "Remote-first companies",
-                desc: "Employees and contractors distributed across borders and banking systems.",
+                desc: "Distributed employees and contractors across borders who prefer USDC over wire transfers.",
               },
               {
-                label: "Safe-based treasury teams",
-                desc: "Multi-sig custody with a professional payout layer on top.",
-              },
-              {
+                avatar: "/images/pay/03_male_pompadour_black_hair_half_lidded_eyes_open_mouth.png",
                 label: "Finance leads & operators",
-                desc: "People who need audit trails and reporting, not just wallets.",
-              },
-              {
-                label: "Agent-forward businesses",
-                desc: "Organizations building toward agent-operable financial infrastructure.",
+                desc: "People who need audit trails and reporting — not just a wallet with a transaction hash.",
               },
             ].map((c) => (
               <div
                 key={c.label}
-                className="p-6 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+                className="p-6 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex gap-4"
               >
-                <h3 className="font-black mb-2">{c.label}</h3>
-                <p className="text-notion-gray text-sm font-medium leading-relaxed">
-                  {c.desc}
-                </p>
+                <div className="w-12 h-12 border-2 border-black bg-gray-50 rounded-full overflow-hidden shrink-0 flex items-center justify-center">
+                  <Image
+                    src={c.avatar}
+                    alt={c.label}
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-black mb-1">{c.label}</h3>
+                  <p className="text-notion-gray text-sm font-medium leading-relaxed">
+                    {c.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section id="waitlist" className="py-32 bg-[#f2faf5] border-b-2 border-black text-center">
+      {/* ── CTA / Waitlist ── */}
+      <section
+        id="waitlist"
+        className="py-32 bg-[#f2faf5] border-b-2 border-black text-center"
+      >
         <div className="max-w-2xl mx-auto px-6">
+          <div className="flex justify-center mb-8">
+            <div className="w-16 h-16 border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center p-3">
+              <Image
+                src="/images/pay/motivation_money_logo.png"
+                alt="Motivation Pay"
+                width={52}
+                height={52}
+                className="object-contain"
+              />
+            </div>
+          </div>
           <h2 className="font-hand text-4xl md:text-6xl text-black mb-6 leading-tight">
-            Move from &ldquo;we can send stablecoins&rdquo; to &ldquo;we run
-            financial operations professionally.&rdquo;
+            From &ldquo;we send stablecoins&rdquo; to
+            &ldquo;we run financial ops.&rdquo;
           </h2>
           <p className="text-lg text-black/70 mb-10 font-medium">
-            Join the waitlist for early access. Currently piloting with
-            AI-native companies.
+            Join the waitlist. Currently piloting with AI-native companies.
           </p>
           <WaitlistForm product="Motivation Pay" accentClass="bg-emerald-500" />
         </div>

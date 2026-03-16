@@ -14,13 +14,13 @@ const config = {
   },
   Coinbase: {
     logo: "/images/exchanges/coinbase.png",
-    bg: "bg-[#0052FF]",
+    bg: "bg-[#1652F0]",
     text: "text-white",
   },
   Binance: {
     logo: "/images/exchanges/binance.png",
-    bg: "bg-[#F0B90B]",
-    text: "text-black",
+    bg: "bg-[#181A20]",
+    text: "text-[#F3BA2F]",
   },
 };
 

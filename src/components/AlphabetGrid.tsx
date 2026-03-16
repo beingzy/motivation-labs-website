@@ -22,6 +22,18 @@ const activeLetters: Record<
     hoverText: string;
   }
 > = {
+  E: {
+    slug: "me",
+    label: "Me",
+    comingSoon: true,
+    href: "/#me",
+    defaultBg: "bg-blue-200",
+    defaultText: "text-blue-900",
+    defaultBadgeBg: "bg-blue-400",
+    defaultBadgeText: "text-blue-900",
+    hoverBg: "hover:bg-blue-400",
+    hoverText: "hover:text-blue-950",
+  },
   K: {
     slug: "kids",
     label: "Kids",
@@ -35,22 +47,10 @@ const activeLetters: Record<
     hoverText: "hover:text-amber-950",
   },
   M: {
-    slug: "me",
-    label: "Me",
-    comingSoon: true,
-    href: "/#me",
-    defaultBg: "bg-blue-200",
-    defaultText: "text-blue-900",
-    defaultBadgeBg: "bg-blue-400",
-    defaultBadgeText: "text-blue-900",
-    hoverBg: "hover:bg-blue-400",
-    hoverText: "hover:text-blue-950",
-  },
-  P: {
-    slug: "pay",
-    label: "Pay",
+    slug: "money",
+    label: "Money",
     comingSoon: false,
-    href: "/#pay",
+    href: "/#money",
     defaultBg: "bg-emerald-200",
     defaultText: "text-emerald-900",
     defaultBadgeBg: "bg-emerald-400",
@@ -119,7 +119,7 @@ export default function AlphabetGrid() {
                   </span>
                 )}
 
-                {/* Live dot — Pay only */}
+                {/* Live dot — Money only */}
                 {!product.comingSoon && (
                   <span className="absolute top-2 right-2 live-dot w-2 h-2 rounded-full bg-emerald-600" />
                 )}

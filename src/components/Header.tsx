@@ -6,9 +6,9 @@ import { trackEvent } from "./GoogleAnalytics";
 
 const productLinks = [
   {
-    label: "Motivation Pay",
-    href: "/pay",
-    badge: "P",
+    label: "Motivation Money",
+    href: "/money",
+    badge: "M",
     badgeColor: "bg-emerald-400",
     status: "Live",
   },
@@ -22,7 +22,7 @@ const productLinks = [
   {
     label: "Motivate Me",
     href: "/#me",
-    badge: "M",
+    badge: "E",
     badgeColor: "bg-blue-400",
     status: "Coming Soon",
   },

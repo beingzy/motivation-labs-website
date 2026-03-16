@@ -29,7 +29,7 @@ export default function MePage() {
       <section className="bg-blue-200 py-24 md:py-32">
         <div className="max-w-6xl mx-auto px-6">
           <div className="inline-block px-4 py-1.5 rounded-full bg-blue-600 text-white text-[11px] font-black uppercase tracking-[0.15em] mb-6">
-            M — Motivate Me
+            E — Motivate Me
           </div>
           <h1 className="font-hand text-5xl md:text-7xl text-blue-900 mb-8 leading-tight max-w-3xl">
             Commitment through community.

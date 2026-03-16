@@ -22,7 +22,7 @@ export default function Home() {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-emerald-400 text-black text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
                 <span className="live-dot w-1.5 h-1.5 rounded-full bg-black shrink-0" />
-                Motivation Pay is live
+                Motivation Money is live
               </div>
               <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 md:mb-8 leading-[0.88]">
                 Motivation
@@ -36,10 +36,10 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap gap-3 md:gap-4">
                 <Link
-                  href="/pay"
+                  href="/money"
                   className="btn-notion bg-black text-white px-6 md:px-8 py-3 md:py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
                 >
-                  See Motivation Pay →
+                  See Motivation Money →
                 </Link>
                 <a
                   href="#products"
@@ -93,11 +93,11 @@ export default function Home() {
       {/* ── A-Z Product Grid ── */}
       <AlphabetGrid />
 
-      {/* ── Featured: Motivation Pay ── */}
+      {/* ── Featured: Motivation Money ── */}
       <section
         className="py-20 md:py-32 border-t-2 border-black bg-[#f2faf5]"
-        id="pay"
-        aria-label="Motivation Pay"
+        id="money"
+        aria-label="Motivation Money"
       >
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -105,14 +105,14 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-3 mb-6 md:mb-8 flex-wrap">
                 <Image
-                  src="/images/pay/motivation_money_logo.png"
-                  alt="Motivation Pay"
+                  src="/images/money/motivation_money_logo.png"
+                  alt="Motivation Money"
                   width={36}
                   height={36}
                   className="object-contain logo-walk"
                 />
                 <div className="inline-block px-4 py-1.5 rounded-md border-2 border-black bg-emerald-400 text-black text-[11px] font-black uppercase tracking-[0.15em] shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
-                  P — Motivation Pay
+                  M — Motivation Money
                 </div>
                 <span className="flex items-center gap-1.5 px-3 py-1 rounded-md border-2 border-black bg-black text-white text-[10px] font-black uppercase tracking-wider">
                   <span className="live-dot w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
@@ -120,17 +120,17 @@ export default function Home() {
                 </span>
               </div>
               <h2 className="font-hand text-4xl md:text-6xl text-black mb-4 md:mb-6 leading-tight">
-                Stablecoin payroll for AI teams.
+                Stablecoin financial ops for modern teams.
               </h2>
               <p className="text-base md:text-lg text-black/80 mb-6 md:mb-8 font-medium leading-relaxed">
                 Your funds stay in your Safe. Payments route through a CEX —
                 keeping on-chain movements private while remaining fully
-                compliant.
+                compliant. Treasury, payroll, bonuses, and reimbursements — one tool.
               </p>
               <ul className="space-y-3 mb-8 md:mb-10">
                 <li className="flex items-start gap-3 text-sm md:text-base font-medium">
                   <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
-                  Payroll, bonuses &amp; reimbursements in one place
+                  Self-custody treasury with whitelist-only payouts
                 </li>
                 <li className="flex items-start gap-3 text-sm md:text-base font-medium">
                   <span className="mt-1.5 w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
@@ -147,10 +147,10 @@ export default function Home() {
                 </li>
               </ul>
               <Link
-                href="/pay"
+                href="/money"
                 className="btn-notion inline-block bg-black text-white px-7 md:px-8 py-3 md:py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm"
               >
-                Explore Motivation Pay →
+                Explore Motivation Money →
               </Link>
             </div>
 
@@ -225,7 +225,7 @@ export default function Home() {
                 href: "/kids",
               },
               {
-                letter: "M",
+                letter: "E",
                 color: "bg-blue-400",
                 name: "Motivate Me",
                 tagline: "Commitment through community.",
@@ -250,7 +250,7 @@ export default function Home() {
                   <div
                     className={`inline-flex items-center gap-2 px-3 py-1.5 ${product.color} text-black text-[10px] font-black uppercase tracking-wider border-2 border-white/20`}
                   >
-                    {product.letter} — {product.name.split(" ")[1]}
+                    {product.letter} — {product.name.split(" ").pop()}
                   </div>
                   <span className="text-[9px] font-black text-white/30 uppercase tracking-widest">
                     Soon

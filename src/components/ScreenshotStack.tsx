@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const screens = [
-  { src: "/images/pay/04-dashboard.png",            alt: "Dashboard overview",   label: "Dashboard"   },
-  { src: "/images/pay/07-payouts-list.png",          alt: "Payouts list",         label: "Payouts"     },
-  { src: "/images/pay/09-run-detail-confirmed.png",  alt: "Payroll run detail",   label: "Run Detail"  },
-  { src: "/images/pay/17-audit-log.png",             alt: "Audit log",            label: "Audit Log"   },
+  { src: "/images/money/04-dashboard.png",            alt: "Dashboard overview",   label: "Dashboard"   },
+  { src: "/images/money/07-payouts-list.png",          alt: "Payouts list",         label: "Payouts"     },
+  { src: "/images/money/09-run-detail-confirmed.png",  alt: "Payroll run detail",   label: "Run Detail"  },
+  { src: "/images/money/17-audit-log.png",             alt: "Audit log",            label: "Audit Log"   },
 ];
 
 // Desktop: fan horizontally

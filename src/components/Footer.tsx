@@ -24,11 +24,11 @@ export default function Footer() {
             <ul className="space-y-3 text-sm font-black uppercase tracking-wider">
               <li>
                 <Link
-                  href="/pay"
+                  href="/money"
                   className="hover:underline decoration-2 flex items-center gap-2"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
-                  Motivation Pay
+                  Motivation Money
                   <span className="text-[9px] text-black/30 font-black uppercase tracking-widest">
                     Live
                   </span>

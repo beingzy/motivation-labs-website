@@ -20,6 +20,26 @@ export interface Product {
 
 export const products: Product[] = [
   {
+    slug: "me",
+    letter: "E",
+    name: "Motivate Me",
+    shortName: "Me",
+    tagline: "Commitment through community.",
+    description:
+      "Personal habit-formation powered by social accountability. Because a commitment made in front of others is a commitment you're more likely to keep.",
+    cta: { label: "Download App", href: "/me" },
+    color: {
+      bg: "bg-blue-200",
+      bgLight: "bg-blue-100",
+      text: "text-blue-900",
+      textMuted: "text-blue-800/80",
+      badge: "bg-blue-600",
+      badgeText: "text-blue-800",
+      accent: "bg-blue-900",
+      accentHover: "hover:bg-blue-950",
+    },
+  },
+  {
     slug: "kids",
     letter: "K",
     name: "Motivate Kids",
@@ -40,34 +60,14 @@ export const products: Product[] = [
     },
   },
   {
-    slug: "me",
+    slug: "money",
     letter: "M",
-    name: "Motivate Me",
-    shortName: "Me",
-    tagline: "Commitment through community.",
+    name: "Motivation Money",
+    shortName: "Money",
+    tagline: "Stablecoin financial ops for modern teams.",
     description:
-      "Personal habit-formation powered by social accountability. Because a commitment made in front of others is a commitment you're more likely to keep.",
-    cta: { label: "Download App", href: "/me" },
-    color: {
-      bg: "bg-blue-200",
-      bgLight: "bg-blue-100",
-      text: "text-blue-900",
-      textMuted: "text-blue-800/80",
-      badge: "bg-blue-600",
-      badgeText: "text-blue-800",
-      accent: "bg-blue-900",
-      accentHover: "hover:bg-blue-950",
-    },
-  },
-  {
-    slug: "pay",
-    letter: "P",
-    name: "Motivation Pay",
-    shortName: "Pay",
-    tagline: "Stablecoin payroll for AI teams.",
-    description:
-      "Built for the AI-native economy. Instant USDT/USDC payments via a CEX-routed pipeline, wrapped in a clean, professional dashboard.",
-    cta: { label: "Join Waitlist", href: "/pay" },
+      "Self-custody treasury management with CEX-routed payments. Your funds stay in your Safe — payments are private, compliant, and fully auditable.",
+    cta: { label: "Try Motivation Money", href: "/money" },
     color: {
       bg: "bg-emerald-200",
       bgLight: "bg-emerald-100",

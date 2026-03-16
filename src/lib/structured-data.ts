@@ -1,6 +1,6 @@
 import { Product } from "./products";
 
-const BASE_URL = "https://motivationlabs.com";
+const BASE_URL = "https://motivationlabs.ai";
 
 export function organizationJsonLd() {
   return {

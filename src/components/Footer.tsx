@@ -96,7 +96,7 @@ export default function Footer() {
           <span>&copy; 2024–2025 Motivation Labs LLC. All rights reserved.</span>
           {/* "Motivation Labs" is the brand; "Motivation Labs LLC" is the registered legal entity */}
           <span className="mt-4 md:mt-0 font-hand text-2xl lowercase tracking-normal text-black opacity-80">
-            Focus is the new currency.
+            Motivation is what makes it matter.
           </span>
         </div>
       </div>

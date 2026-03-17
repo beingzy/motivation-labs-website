@@ -3,42 +3,62 @@
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { trackEvent } from "./GoogleAnalytics";
+import LanguageSwitcher from "./LanguageSwitcher";
+import type { Dictionary } from "@/i18n";
 
-const productLinks = [
+function prefixHref(href: string, locale: "en" | "zh"): string {
+  if (locale !== "zh") return href;
+  // External or anchor-only links stay as-is
+  if (href.startsWith("http") || href.startsWith("#")) return href;
+  // Hash links like /#money → /zh/#money (but only the path part)
+  if (href.startsWith("/#")) return `/zh/${href.slice(1)}`;
+  // /money → /zh/money
+  if (href === "/") return "/zh";
+  return `/zh${href}`;
+}
+
+const productLinksBase = [
   {
     label: "Motivation Money",
     href: "/money",
     badge: "M",
     badgeColor: "bg-emerald-400",
-    status: "Live",
+    statusKey: "live" as const,
   },
   {
     label: "Motivate Kids",
     href: "/#kids",
     badge: "K",
     badgeColor: "bg-amber-400",
-    status: "Coming Soon",
+    statusKey: "soon" as const,
   },
   {
     label: "Motivate Me",
     href: "/#me",
     badge: "E",
     badgeColor: "bg-blue-400",
-    status: "Coming Soon",
+    statusKey: "soon" as const,
   },
   {
     label: "Motivation Team",
     href: "/#team",
     badge: "T",
     badgeColor: "bg-violet-400",
-    status: "Coming Soon",
+    statusKey: "soon" as const,
   },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  locale?: "en" | "zh";
+  dict?: Dictionary;
+}
+
+export default function Header({ locale = "en", dict }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const nav = dict?.nav;
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -53,9 +73,11 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const homeHref = locale === "zh" ? "/zh" : "/";
+
   return (
     <header className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between relative">
-      <Link href="/" className="flex items-center space-x-3">
+      <Link href={homeHref} className="flex items-center space-x-3">
         <div className="w-9 h-9 bg-black rounded-lg flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
           <span className="text-white font-bold text-xl">M</span>
         </div>
@@ -72,7 +94,7 @@ export default function Header() {
               trackEvent("nav_products_click");
             }}
           >
-            Products
+            {nav?.products ?? "Products"}
             <svg
               className={`w-3.5 h-3.5 transition-transform ${productsOpen ? "rotate-180" : ""}`}
               fill="none"
@@ -89,10 +111,10 @@ export default function Header() {
           </button>
           {productsOpen && (
             <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 w-64 bg-white border-2 border-black rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] py-2 z-50">
-              {productLinks.map((p) => (
+              {productLinksBase.map((p) => (
                 <Link
                   key={p.href}
-                  href={p.href}
+                  href={prefixHref(p.href, locale)}
                   className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors"
                   onClick={() => {
                     setProductsOpen(false);
@@ -111,9 +133,9 @@ export default function Header() {
                       {p.label}
                     </div>
                   </div>
-                  {p.status === "Coming Soon" && (
+                  {p.statusKey === "soon" && (
                     <span className="text-[9px] font-black text-black/40 uppercase tracking-wider">
-                      Soon
+                      {nav?.soon ?? "Soon"}
                     </span>
                   )}
                 </Link>
@@ -123,15 +145,32 @@ export default function Header() {
         </div>
 
         <Link
-          href="/#contact"
+          href={prefixHref("/blog", locale)}
           className="hover:text-black transition-colors"
         >
-          Contact
+          {nav?.blog ?? "Blog"}
         </Link>
+
+        <Link
+          href={locale === "zh" ? "https://docs.motivationlabs.ai/zh/money" : "https://docs.motivationlabs.ai"}
+          className="hover:text-black transition-colors"
+        >
+          {nav?.docs ?? "Docs"}
+        </Link>
+
+        <Link
+          href={prefixHref("/#contact", locale)}
+          className="hover:text-black transition-colors"
+        >
+          {nav?.contact ?? "Contact"}
+        </Link>
+
+        <LanguageSwitcher locale={locale} />
       </nav>
 
       {/* Mobile menu */}
-      <div className="md:hidden">
+      <div className="md:hidden flex items-center gap-3">
+        <LanguageSwitcher locale={locale} />
         <button
           className="p-2 border-2 border-black rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] bg-white"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -156,12 +195,12 @@ export default function Header() {
         <div className="absolute top-full left-0 right-0 bg-white border-b-2 border-black p-6 md:hidden z-50">
           <nav className="flex flex-col space-y-2 text-sm font-bold">
             <div className="text-[10px] font-black uppercase tracking-widest text-black/40 mb-2">
-              Products
+              {nav?.mobileProducts ?? "Products"}
             </div>
-            {productLinks.map((p) => (
+            {productLinksBase.map((p) => (
               <Link
                 key={p.href}
-                href={p.href}
+                href={prefixHref(p.href, locale)}
                 className="flex items-center gap-3 py-2 hover:text-black text-notion-gray"
                 onClick={() => setMenuOpen(false)}
               >
@@ -171,20 +210,34 @@ export default function Header() {
                   {p.badge}
                 </span>
                 {p.label}
-                {p.status === "Coming Soon" && (
+                {p.statusKey === "soon" && (
                   <span className="text-[9px] font-black text-black/40 uppercase">
-                    Soon
+                    {nav?.soon ?? "Soon"}
                   </span>
                 )}
               </Link>
             ))}
-            <div className="border-t-2 border-black pt-4 mt-4">
+            <div className="border-t-2 border-black pt-4 mt-4 space-y-3">
               <Link
-                href="/#contact"
-                className="hover:text-black text-notion-gray"
+                href={prefixHref("/blog", locale)}
+                className="block hover:text-black text-notion-gray"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact
+                {nav?.blog ?? "Blog"}
+              </Link>
+              <Link
+                href={locale === "zh" ? "https://docs.motivationlabs.ai/zh/money" : "https://docs.motivationlabs.ai"}
+                className="block hover:text-black text-notion-gray"
+                onClick={() => setMenuOpen(false)}
+              >
+                {nav?.docs ?? "Docs"}
+              </Link>
+              <Link
+                href={prefixHref("/#contact", locale)}
+                className="block hover:text-black text-notion-gray"
+                onClick={() => setMenuOpen(false)}
+              >
+                {nav?.contact ?? "Contact"}
               </Link>
             </div>
           </nav>

@@ -13,6 +13,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Override handwriting font for Chinese locale */
+.zh-locale {
+  --font-hand: var(--font-zcool-kuaile) !important;
+}
+
 body {
   background: var(--color-notion-bg);
   color: var(--color-notion-text);
@@ -147,6 +152,45 @@ body {
 }
 .live-dot {
   animation: live-pulse 2.2s ease-in-out infinite;
+}
+
+/* Red strikethrough for promo pricing */
+.price-struck {
+  position: relative;
+  text-decoration: none;
+}
+
+.price-struck::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 50%;
+  height: 3px;
+  background: #ef4444;
+  transform: rotate(-8deg);
+  border-radius: 2px;
+}
+
+/* Quote / persona cards — hover lift */
+.quote-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quote-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.quote-card:hover .quote-avatar {
+  animation: avatar-bounce 0.4s ease;
+}
+
+@keyframes avatar-bounce {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.12); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
 }
 
 /* Screenshot showcase */

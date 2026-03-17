@@ -72,21 +72,41 @@ const activeLetters: Record<
   },
 };
 
-export default function AlphabetGrid() {
+const comingSoonLabels: Record<string, string> = {
+  en: "Coming Soon",
+  zh: "\u5373\u5C06\u4E0A\u7EBF",
+};
+
+const ecosystemLabels: Record<string, string> = {
+  en: "The Ecosystem (A-Z)",
+  zh: "\u4EA7\u54C1\u77E9\u9635 (A-Z)",
+};
+
+interface AlphabetGridProps {
+  locale?: "en" | "zh";
+}
+
+export default function AlphabetGrid({ locale = "en" }: AlphabetGridProps) {
+  const prefix = locale === "zh" ? "/zh" : "";
+
   return (
     <section className="max-w-6xl mx-auto px-6 py-12" id="products">
       <div className="mb-8 text-xs font-black uppercase tracking-[0.25em] text-notion-gray">
-        The Ecosystem (A-Z)
+        {ecosystemLabels[locale]}
       </div>
       <div className="grid grid-cols-4 md:grid-cols-8 border-t-[3px] border-l-[3px] border-black">
         {alphabet.map((letter) => {
           const product = activeLetters[letter];
 
           if (product) {
+            const href = prefix
+              ? `${prefix}${product.href.startsWith("/#") ? "/" + product.href.slice(1) : product.href}`
+              : product.href;
+
             return (
               <Link
                 key={letter}
-                href={product.href}
+                href={href}
                 className={`matrix-cell active group ${product.defaultBg} ${product.hoverBg} border-r-[3px] border-b-[3px] border-black h-24 md:h-32 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-150`}
                 onClick={() =>
                   trackEvent("matrix_click", { letter, product: product.label })
@@ -114,7 +134,7 @@ export default function AlphabetGrid() {
                     <span
                       className={`px-2 py-0.5 ${product.defaultBadgeBg} group-hover:bg-black/20 ${product.defaultBadgeText} group-hover:text-black/60 text-[7px] font-black uppercase tracking-wider border border-black/20 transition-all`}
                     >
-                      Coming Soon
+                      {comingSoonLabels[locale]}
                     </span>
                   </span>
                 )}

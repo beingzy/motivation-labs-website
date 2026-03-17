@@ -8,14 +8,19 @@ import CexBadge from "@/components/CexBadge";
 const product = getProduct("money")!;
 
 export const metadata: Metadata = {
-  title: "Motivation Money — Self-Custody Stablecoin Financial Ops",
+  title: "Motivation Money — Stablecoin Payroll & Crypto Payment Operations",
   description:
-    "Your funds stay in your Safe. Payments route through a CEX — keeping on-chain movements private while remaining fully compliant. The financial operations layer for stablecoin-native teams.",
+    "Stablecoin payroll software for global teams. Self-custody treasury with Safe, CEX-routed USDC/USDT payments, full audit trail. API-first — built for AI agents and humans. Free to start.",
+  alternates: {
+    canonical: "/money",
+    languages: { en: "/money", zh: "/zh/money" },
+  },
   openGraph: {
-    title: "Motivation Money — Self-Custody Stablecoin Financial Ops",
+    title: "Motivation Money — Stablecoin Payroll & Crypto Payment Operations",
     description:
-      "Your funds stay in your Safe. Payments route through a CEX — keeping on-chain movements private while remaining fully compliant.",
+      "Pay your global team in USDC/USDT. Self-custody treasury, CEX-routed private payments, complete audit trail. API and CLI for AI agent automation.",
     type: "website",
+    images: [{ url: "/og/money.png", width: 1200, height: 630, alt: "Motivation Money" }],
   },
 };
 
@@ -94,17 +99,15 @@ export default function MoneyPage() {
             </div>
 
             {/* Dashboard screenshot */}
-            <div className="hidden md:block">
-              <div className="screenshot-card">
-                <Image
-                  src="/images/money/04-dashboard.png"
-                  alt="Motivation Money Dashboard"
-                  width={720}
-                  height={480}
-                  className="w-full h-auto block"
-                  priority
-                />
-              </div>
+            <div className="screenshot-card">
+              <Image
+                src="/images/money/04-dashboard.png"
+                alt="Motivation Money Dashboard"
+                width={720}
+                height={480}
+                className="w-full h-auto block"
+                priority
+              />
             </div>
           </div>
         </div>
@@ -147,10 +150,10 @@ export default function MoneyPage() {
             ].map((item) => (
               <div
                 key={item.name}
-                className="p-6 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] bg-white"
+                className="quote-card p-6 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] bg-white"
               >
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-12 h-12 border-2 border-black bg-gray-50 rounded-full overflow-hidden flex items-center justify-center shrink-0">
+                  <div className="quote-avatar w-12 h-12 border-2 border-black bg-gray-50 rounded-full overflow-hidden flex items-center justify-center shrink-0">
                     <Image
                       src={item.avatar}
                       alt={item.name}
@@ -461,9 +464,9 @@ export default function MoneyPage() {
             ].map((c) => (
               <div
                 key={c.label}
-                className="p-6 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex gap-4"
+                className="quote-card p-6 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex gap-4"
               >
-                <div className="w-12 h-12 border-2 border-black bg-gray-50 rounded-full overflow-hidden shrink-0 flex items-center justify-center">
+                <div className="quote-avatar w-12 h-12 border-2 border-black bg-gray-50 rounded-full overflow-hidden shrink-0 flex items-center justify-center">
                   <Image
                     src={c.avatar}
                     alt={c.label}
@@ -484,8 +487,156 @@ export default function MoneyPage() {
         </div>
       </section>
 
+      {/* ── Pricing ── */}
+      <section className="py-24 bg-[#f2faf5] border-b-2 border-black" id="pricing">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-2xl mb-16">
+            <div className="inline-block px-3 py-1 border-2 border-black text-[10px] font-black uppercase tracking-[0.2em] mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+              Pricing
+            </div>
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight">
+              All features on every plan.
+              <br />
+              The only difference is seats.
+            </h2>
+          </div>
+
+          {/* Promo banner */}
+          <div className="mb-10 p-4 border-2 border-black bg-emerald-400 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] inline-block">
+            <span className="text-sm font-black uppercase tracking-wider">
+              Pro is free for 3 months — no credit card required
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            {/* Free */}
+            <div className="p-6 md:p-8 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] bg-white">
+              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 mb-4">
+                Free
+              </div>
+              <div className="flex items-baseline gap-1 mb-6">
+                <span className="text-5xl font-black tracking-tighter">$0</span>
+                <span className="text-sm font-bold text-notion-gray">/month</span>
+              </div>
+              <p className="text-sm text-notion-gray font-medium leading-relaxed mb-6">
+                Up to 3 active team members. Same features as Pro — no credit
+                card, no trial period, free forever within the seat limit.
+              </p>
+              <ul className="space-y-2 text-sm font-medium text-notion-gray">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Full dashboard, REST API, and CLI
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Payroll, ad-hoc payments, reimbursements
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Audit log with CSV export
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Custom email branding
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Webhooks and OpenAPI spec
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Zero platform fees on payouts
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  24-month statement records
+                </li>
+              </ul>
+            </div>
+
+            {/* Pro */}
+            <div className="p-6 md:p-8 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white relative">
+              <div className="absolute -top-3 right-6 px-3 py-1 bg-black text-white text-[10px] font-black uppercase tracking-wider">
+                Most Popular
+              </div>
+              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 mb-4">
+                Pro
+              </div>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="price-struck text-3xl font-black tracking-tighter text-black/40">$1.99</span>
+                <span className="text-5xl font-black tracking-tighter">$0</span>
+                <span className="text-sm font-bold text-notion-gray">/member/month</span>
+              </div>
+              <p className="text-xs font-bold mb-6">
+                <span className="text-emerald-600">Free for the first 3 months.</span>
+                {" "}Then $1.99/member/month, first 3 members always free.
+              </p>
+              <p className="text-sm text-notion-gray font-medium leading-relaxed mb-6">
+                Remove the seat cap and scale linearly as your team grows
+                exponentially. Self-service billing from your dashboard.
+              </p>
+              <ul className="space-y-2 text-sm font-medium text-notion-gray mb-8">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Everything in Free
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Unlimited team members
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0" />
+                  Lifetime statement records
+                </li>
+              </ul>
+
+              {/* Dedicated Infrastructure add-on */}
+              <div className="border-t-2 border-black pt-6">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 mb-3">
+                  Add-on
+                </div>
+                <div className="p-4 border-2 border-dashed border-black/30 bg-emerald-50">
+                  <div className="flex items-baseline gap-2 mb-2">
+                    <span className="text-xl font-black tracking-tight">$99</span>
+                    <span className="text-xs font-bold text-notion-gray">/month</span>
+                  </div>
+                  <h4 className="font-black text-sm mb-2">Dedicated Infrastructure</h4>
+                  <ul className="space-y-1.5 text-xs font-medium text-notion-gray">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-emerald-500 shrink-0" />
+                      Static outbound IPs for CEX API allowlisting
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-emerald-500 shrink-0" />
+                      Isolated compute and database resources
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-emerald-500 shrink-0" />
+                      Dedicated VPS — no shared tenancy
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-sm text-notion-gray font-medium">
+              No per-transaction fees. The only variable cost is your exchange&apos;s
+              withdrawal fee (typically $1–$10).{" "}
+              <Link
+                href="https://docs.motivationlabs.ai/money/pricing"
+                className="underline decoration-2 hover:text-black"
+              >
+                Full pricing details →
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
-      <section className="py-32 bg-[#f2faf5] border-b-2 border-black text-center">
+      <section className="py-32 bg-white border-b-2 border-black text-center">
         <div className="max-w-2xl mx-auto px-6">
           <div className="flex justify-center mb-8">
             <Image

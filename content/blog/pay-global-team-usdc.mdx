@@ -1,0 +1,89 @@
+---
+title: "How to Pay a Global Team in USDC"
+description: "A practical guide to running stablecoin payroll for distributed teams — from treasury setup to CEX-routed payments with full audit trail."
+date: "2026-03-17"
+author: "Motivation Labs"
+tags: ["stablecoin", "payroll", "guide"]
+---
+
+If you're running a global team and paying people in USDC, you've probably felt the pain: spreadsheets tracking wallet addresses, manual transfers from a hot wallet, zero audit trail, and the constant anxiety of sending $40,000 to the wrong address.
+
+This guide walks through how to set up stablecoin payroll properly — with self-custody, privacy, and compliance built in.
+
+## The Problem with Manual Wallet Transfers
+
+Most crypto-native teams start the same way: someone opens a wallet, sends USDC to each team member, and tracks it in a spreadsheet. This works for 3 people. It breaks at 10.
+
+Here's what goes wrong:
+
+- **No audit trail.** Your CPA asks "what was this $8,500 transfer on March 3rd?" and you have to reconstruct it from memory.
+- **Address risk.** One wrong character in a wallet address and funds are gone forever. No recourse, no reversal.
+- **Privacy leak.** Every payment is visible on-chain. Anyone with your treasury address can see who you're paying, how much, and when.
+- **Compliance gaps.** Regulators and auditors expect structured records — not Etherscan links.
+
+## The Two-Stage Treasury Model
+
+The architecture that solves all four problems uses two stages:
+
+**Stage 1: Self-custody with Safe.** Your organization holds funds in a Safe multi-sig wallet. Multiple signers, threshold approval, on-chain governance. Your keys, your money.
+
+**Stage 2: CEX-routed distribution.** When it's time to pay, funds move from your Safe to a centralized exchange (OKX). The exchange then sends individual withdrawals to each recipient.
+
+This gives you:
+
+- **Privacy** — recipients receive from the exchange, not your company wallet. On-chain observers can't reconstruct your payroll.
+- **Address enforcement** — the exchange's withdrawal whitelist prevents payments to unverified addresses.
+- **Audit trail** — every step is logged: Safe proposal, deposit, withdrawal initiation, on-chain delivery.
+
+## Step-by-Step Setup
+
+### 1. Create your Safe wallet
+
+Deploy a Safe multi-sig on the chain your team uses (Ethereum, Polygon, Arbitrum, or Base). Set a threshold that matches your team size — 2-of-3 for small teams, 3-of-5 for larger ones.
+
+### 2. Connect your exchange
+
+Create an OKX account for your organization. Generate API credentials with withdrawal permissions. You'll need to whitelist your server's IP address for API access.
+
+### 3. Set up Motivation Money
+
+Connect both your Safe and OKX account to Motivation Money. Add your team members with their wallet addresses, salary, preferred stablecoin (USDC or USDT), and network.
+
+### 4. Whitelist recipient addresses
+
+Export wallet addresses from your team roster and add them to OKX's withdrawal whitelist. This is a one-time manual step in the OKX interface — after this, funds physically cannot leave to an unregistered address.
+
+### 5. Run a test payout
+
+Create a test run with small amounts ($5–$10 per recipient) to verify the end-to-end flow. Motivation Money deducts the test amount from the first real payroll.
+
+### 6. Execute your first payroll
+
+Create a payroll run, review per-employee breakdowns, confirm, check the CEX balance, and execute. Each payout is tracked individually with status updates and on-chain transaction hashes.
+
+## What About Taxes and Compliance?
+
+Stablecoin payments don't exempt you from tax obligations. Your team members still need to report income, and your organization still needs to track payments for tax purposes.
+
+Motivation Money's audit log gives you what compliance requires: a timestamped record of every payment with amount, recipient, status, and transaction hash. Export it as CSV for your accountant.
+
+## Automating with AI Agents
+
+If you're running payroll monthly, you can automate the entire flow with the Motivation Money API or CLI:
+
+```bash
+# Create the run
+mp runs create --period-start 2026-04-01 --period-end 2026-04-30
+
+# Review, confirm, execute
+mp runs confirm <run-id>
+mp runs execute <run-id> --wait
+```
+
+An AI agent can handle the full lifecycle — creating runs, checking balances, executing, and reporting results. See the [AI agents integration guide](https://docs.motivationlabs.ai/money/integrations/ai-agents) for tool schemas and example workflows.
+
+## Getting Started
+
+Motivation Money is free for teams up to 3 members, with all features included. The Pro tier (unlimited members) is free for 3 months during the current promotion.
+
+No credit card, no waitlist — [get started today](https://money.motivationlabs.ai).

@@ -1,0 +1,158 @@
+---
+title: "How to Automate Payroll with AI Agents"
+description: "Use the Motivation Money API and CLI to let AI agents create payroll runs, execute payments, and monitor status — with scoped permissions and full audit trails."
+date: "2026-03-17"
+author: "Motivation Labs"
+tags: ["AI agents", "automation", "API"]
+---
+
+Motivation Money is designed to be operated by AI agents as easily as by humans. Every dashboard action has a corresponding API endpoint and CLI command. This post shows how to wire up an AI agent to run payroll autonomously.
+
+## Why This Works
+
+Most fintech tools are built for humans clicking buttons. They have complex UIs, session-based auth, and workflows that assume a person is watching. None of that works for an LLM agent.
+
+Motivation Money is different:
+
+- **Structured JSON I/O** — every endpoint returns consistent, parseable responses.
+- **Scoped API keys** — give the agent exactly the permissions it needs and nothing more.
+- **Explicit state machine** — payroll runs follow a clear lifecycle (draft → confirmed → paying out → completed). The agent always knows what actions are available.
+- **Idempotent writes** — every create operation requires an idempotency key. The agent can safely retry without creating duplicates.
+- **OpenAPI spec** — fetch `/api/v1/openapi.json` to auto-generate tool definitions.
+
+## Two Integration Paths
+
+### Path 1: REST API (HTTP calls)
+
+For agents in frameworks with native HTTP tool support — OpenAI function calling, Anthropic tool use, LangChain, etc.
+
+```bash
+curl -X POST https://money.motivationlabs.ai/api/v1/runs \
+  -H "Authorization: Bearer mpk_live_..." \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: $(uuidgen)" \
+  -d '{"period_start":"2026-04-01","period_end":"2026-04-30","type":"regular"}'
+```
+
+### Path 2: CLI (shell commands)
+
+For agents that execute shell commands — Claude Code, Devin, Cursor, or custom agents.
+
+```bash
+mp runs create --period-start 2026-04-01 --period-end 2026-04-30
+```
+
+The CLI auto-detects piped output and switches to JSON, so `mp runs list | jq '.data[0]'` works without extra flags.
+
+## The Full Agent Workflow
+
+Here's how an agent runs monthly payroll end-to-end:
+
+### Step 1: Create the run
+
+```bash
+mp runs create --period-start 2026-04-01 --period-end 2026-04-30 \
+  --label "April 2026 Payroll" -f json
+```
+
+The system generates payouts for all active employees based on their salary, stablecoin, and network preferences.
+
+### Step 2: Review the draft
+
+```bash
+mp runs payouts <run-id> -f json
+```
+
+The agent can inspect each payout — verify totals, flag anomalies (unexpected salary changes, new employees), and compare against historical runs.
+
+### Step 3: Check the balance
+
+```bash
+mp runs balance-check <run-id>
+```
+
+If the CEX doesn't have enough funds, the agent can notify a human to transfer from the Safe, or check the treasury balance to confirm funds are available.
+
+### Step 4: Confirm and execute
+
+```bash
+mp runs confirm <run-id>
+mp runs execute <run-id> --wait
+```
+
+The `--wait` flag blocks until all payouts complete. Without it, the agent would need to poll `/sync` manually.
+
+### Step 5: Report results
+
+```bash
+mp runs get <run-id> -f json
+```
+
+The agent reads the final status and composes a summary: 42 employees paid, $85,000 total, 0 failures, all transaction hashes recorded.
+
+## Generating Tool Definitions
+
+For LLM frameworks that use tool/function calling, convert the OpenAPI spec into tool definitions:
+
+```bash
+curl https://money.motivationlabs.ai/api/v1/openapi.json
+```
+
+Example tool definition for "create run":
+
+```json
+{
+  "name": "create_payroll_run",
+  "description": "Create a new payroll run for the given pay period",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "period_start": { "type": "string", "format": "date" },
+      "period_end": { "type": "string", "format": "date" },
+      "label": { "type": "string" },
+      "type": { "type": "string", "enum": ["regular", "ad_hoc", "reimbursement"] }
+    },
+    "required": ["period_start", "period_end"]
+  }
+}
+```
+
+## Scoping Permissions
+
+Don't give an agent full access. Use scoped API keys:
+
+| Agent role | Scopes | What it can do |
+|---|---|---|
+| Read-only monitor | `payroll:read`, `treasury:read` | View runs, check balances, generate reports |
+| Payroll preparer | `payroll:read`, `payroll:write` | Create and prepare runs, but NOT execute |
+| Full operator | `payroll:*`, `employees:read`, `treasury:read` | Full payroll lifecycle including execution |
+
+The "preparer" scope is useful for human-in-the-loop workflows: the agent creates and reviews the run, but a human confirms and executes.
+
+## Webhooks for Async Agents
+
+Instead of polling, register a webhook to get push notifications:
+
+```bash
+mp webhooks create \
+  --url https://your-agent.example.com/webhook \
+  --events run.completed,payout.failed
+```
+
+The agent's webhook handler receives structured JSON and can react immediately — retrying failures, sending Slack notifications, or updating an internal ledger.
+
+## Safety Patterns
+
+- **Start with a test run.** Use the test run feature to verify the agent's workflow with small amounts ($5–$10) before going live.
+- **Use short-lived API keys.** Set expiration on agent keys and rotate regularly.
+- **Monitor the audit log.** Every API action is logged with the API key ID. Run `mp audit list --action run_executed` to review agent activity.
+- **Separate create and execute.** Give the agent `payroll:write` but not `payroll:execute`. A human confirms and executes. This keeps a human in the loop for fund movement.
+
+## Getting Started
+
+1. Create an API key at **Settings > API Keys** in the Motivation Money dashboard.
+2. Install the CLI: `npm install -g @motivation-money/cli`
+3. Authenticate: `mp auth login --key mpk_live_...`
+4. Run your first command: `mp runs list`
+
+The full [API reference](https://docs.motivationlabs.ai/money/api) and [CLI reference](https://docs.motivationlabs.ai/money/cli) cover every endpoint and command.

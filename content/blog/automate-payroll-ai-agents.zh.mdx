@@ -1,0 +1,119 @@
+---
+title: "如何用 AI 智能体自动化薪资发放"
+description: "使用 Motivation Money API 和 CLI，让 AI 智能体创建薪资运行、执行支付、监控状态——具备作用域权限和完整审计追踪。"
+date: "2026-03-17"
+author: "Motivation Labs"
+tags: ["AI 智能体", "自动化", "API"]
+---
+
+Motivation Money 的设计让 AI 智能体操作起来和人类一样简单。每个仪表盘操作都有对应的 API 端点和 CLI 命令。这篇文章展示如何接入 AI 智能体来自主运行薪资发放。
+
+## 为什么可行
+
+大多数金融科技工具是为点击按钮的人设计的。它们有复杂的 UI、基于会话的认证和假设有人在观看的工作流。这些对 LLM 智能体都不适用。
+
+Motivation Money 不同：
+
+- **结构化 JSON 输入输出** — 每个端点返回一致的、可解析的响应。
+- **作用域 API 密钥** — 给智能体恰好需要的权限，不多不少。
+- **显式状态机** — 薪资运行遵循清晰的生命周期（草稿 → 已确认 → 发放中 → 已完成）。智能体始终知道当前状态和可用操作。
+- **幂等写入** — 每个创建操作都需要幂等键。智能体可以安全重试而不会创建重复记录。
+- **OpenAPI 规范** — 获取 `/api/v1/openapi.json` 自动生成工具定义。
+
+## 两种集成路径
+
+### 路径一：REST API（HTTP 调用）
+
+适用于原生支持 HTTP 工具的框架——OpenAI function calling、Anthropic tool use、LangChain 等。
+
+```bash
+curl -X POST https://money.motivationlabs.ai/api/v1/runs \
+  -H "Authorization: Bearer mpk_live_..." \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: $(uuidgen)" \
+  -d '{"period_start":"2026-04-01","period_end":"2026-04-30","type":"regular"}'
+```
+
+### 路径二：CLI（Shell 命令）
+
+适用于执行 Shell 命令的智能体——Claude Code、Devin、Cursor 或自定义智能体。
+
+```bash
+mp runs create --period-start 2026-04-01 --period-end 2026-04-30
+```
+
+CLI 自动检测管道输出并切换为 JSON，所以 `mp runs list | jq '.data[0]'` 无需额外参数即可使用。
+
+## 完整智能体工作流
+
+以下是智能体端到端运行月度薪资的步骤：
+
+### 第一步：创建运行
+
+```bash
+mp runs create --period-start 2026-04-01 --period-end 2026-04-30 \
+  --label "2026年4月薪资" -f json
+```
+
+系统根据每位活跃员工的薪资、稳定币和网络偏好自动生成付款。
+
+### 第二步：审查草稿
+
+```bash
+mp runs payouts <run-id> -f json
+```
+
+智能体可以检查每笔付款——验证总额、标记异常（意外的薪资变动、新员工），并与历史运行对比。
+
+### 第三步：检查余额
+
+```bash
+mp runs balance-check <run-id>
+```
+
+如果 CEX 余额不足，智能体可以通知人类从 Safe 转账。
+
+### 第四步：确认并执行
+
+```bash
+mp runs confirm <run-id>
+mp runs execute <run-id> --wait
+```
+
+`--wait` 参数会阻塞直到所有付款完成。这对智能体特别有用——自动轮询状态，完成后返回。
+
+### 第五步：报告结果
+
+```bash
+mp runs get <run-id> -f json
+```
+
+智能体读取最终状态并生成摘要：已支付 42 名员工、总计 $85,000、0 次失败、所有交易哈希已记录。
+
+## 权限作用域
+
+不要给智能体完全访问权限。使用作用域 API 密钥：
+
+| 智能体角色 | 作用域 | 能做什么 |
+|---|---|---|
+| 只读监控 | `payroll:read`, `treasury:read` | 查看运行、检查余额、生成报告 |
+| 薪资准备 | `payroll:read`, `payroll:write` | 创建和准备运行，但不能执行 |
+| 完全操作 | `payroll:*`, `employees:read`, `treasury:read` | 完整薪资生命周期，包括执行 |
+
+"准备"作用域适用于人机协作工作流：智能体创建和审查运行，人类确认并执行。
+
+## 安全模式
+
+- **从测试运行开始。** 使用测试运行功能验证智能体工作流，小额（$5–$10）先行。
+- **使用短期 API 密钥。** 设置过期时间，定期轮换。
+- **监控审计日志。** 每个 API 操作都记录了 API 密钥 ID。运行 `mp audit list --action run_executed` 审查智能体活动。
+- **分离创建和执行。** 给智能体 `payroll:write` 但不给 `payroll:execute`。人类确认并执行，确保资金流转有人把关。
+
+## 开始使用
+
+1. 在 Motivation Money 仪表盘的 **设置 > API 密钥** 创建密钥。
+2. 安装 CLI：`npm install -g @motivation-money/cli`
+3. 认证：`mp auth login --key mpk_live_...`
+4. 运行第一个命令：`mp runs list`
+
+完整的 [API 参考](https://docs.motivationlabs.ai/zh/money/api) 和 [CLI 参考](https://docs.motivationlabs.ai/zh/money/cli) 覆盖了所有端点和命令。

@@ -1,6 +1,21 @@
 import Link from "next/link";
+import type { Dictionary } from "@/i18n";
 
-export default function Footer() {
+function prefixHref(href: string, locale: "en" | "zh"): string {
+  if (locale !== "zh") return href;
+  if (href.startsWith("http")) return href;
+  if (href === "/") return "/zh";
+  return `/zh${href}`;
+}
+
+interface FooterProps {
+  locale?: "en" | "zh";
+  dict?: Dictionary;
+}
+
+export default function Footer({ locale = "en", dict }: FooterProps) {
+  const f = dict?.footer;
+
   return (
     <footer className="bg-white border-t-2 border-black" id="contact">
       <div className="max-w-6xl mx-auto px-6 py-20">
@@ -11,32 +26,32 @@ export default function Footer() {
               Motivation Labs
             </div>
             <p className="text-black/60 text-sm leading-relaxed font-medium max-w-xs">
-              A lean, AI-native software studio building tools for people who
-              take their lives and work seriously.
+              {f?.tagline ??
+                "A lean, AI-native software studio building tools for people who take their lives and work seriously."}
             </p>
           </div>
 
           {/* Products */}
           <div>
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 mb-5">
-              Products
+              {f?.productsLabel ?? "Products"}
             </div>
             <ul className="space-y-3 text-sm font-black uppercase tracking-wider">
               <li>
                 <Link
-                  href="/money"
+                  href={prefixHref("/money", locale)}
                   className="hover:underline decoration-2 flex items-center gap-2"
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
                   Motivation Money
                   <span className="text-[9px] text-black/30 font-black uppercase tracking-widest">
-                    Live
+                    {f?.live ?? "Live"}
                   </span>
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/kids"
+                  href={prefixHref("/kids", locale)}
                   className="hover:underline decoration-2 text-black/40 flex items-center gap-2"
                 >
                   <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
@@ -45,7 +60,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/me"
+                  href={prefixHref("/me", locale)}
                   className="hover:underline decoration-2 text-black/40 flex items-center gap-2"
                 >
                   <span className="w-2 h-2 rounded-full bg-blue-400 inline-block" />
@@ -54,7 +69,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/team"
+                  href={prefixHref("/team", locale)}
                   className="hover:underline decoration-2 text-black/40 flex items-center gap-2"
                 >
                   <span className="w-2 h-2 rounded-full bg-violet-400 inline-block" />
@@ -67,7 +82,7 @@ export default function Footer() {
           {/* Links */}
           <div>
             <div className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 mb-5">
-              Connect
+              {f?.connectLabel ?? "Connect"}
             </div>
             <ul className="space-y-3 text-sm font-black uppercase tracking-wider">
               <li>
@@ -77,15 +92,15 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:underline decoration-2"
                 >
-                  X / Twitter
+                  {f?.xTwitter ?? "X / Twitter"}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/blog"
+                  href={prefixHref("/blog", locale)}
                   className="hover:underline decoration-2"
                 >
-                  Blog
+                  {f?.blog ?? "Blog"}
                 </Link>
               </li>
             </ul>
@@ -93,10 +108,10 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t-2 border-black text-[10px] font-black text-black/40 flex flex-col md:flex-row justify-between items-center uppercase tracking-[0.2em]">
-          <span>&copy; 2024–2025 Motivation Labs LLC. All rights reserved.</span>
+          <span>{f?.copyright ?? "\u00A9 2024\u20132025 Motivation Labs LLC. All rights reserved."}</span>
           {/* "Motivation Labs" is the brand; "Motivation Labs LLC" is the registered legal entity */}
           <span className="mt-4 md:mt-0 font-hand text-2xl lowercase tracking-normal text-black opacity-80">
-            Motivation is what makes it matter.
+            {f?.motto ?? "Motivation is what makes it matter."}
           </span>
         </div>
       </div>

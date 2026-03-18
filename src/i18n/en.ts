@@ -177,11 +177,13 @@ export const en = {
     roadmapDesc:
       "Motivation Money is expanding from a strong pay-out product into a complete financial operating system — collecting client revenue in, paying team out, all in one place.",
     roadmapItems: [
-      "Invoice module for stablecoin client collections",
-      "Public payment pages with wallet address and QR code",
-      "On-chain payment detection with auto-reconciliation",
-      "REST API v1 and MCP server for AI agent access",
-      "Additional CEX adapters — Coinbase, Binance, Bybit",
+      { text: "REST API v1 with 25+ endpoints, CLI, and OpenAPI spec", done: true },
+      { text: "Multi-CEX support — OKX, Coinbase, Binance, and Kraken", done: true },
+      { text: "Operator role system with granular per-operator permissions", done: true },
+      { text: "MCP server for AI agent access (Claude, GPT, custom agents)", done: false },
+      { text: "Invoice module for stablecoin client collections", done: false },
+      { text: "Public payment pages with wallet address and QR code", done: false },
+      { text: "On-chain payment detection with auto-reconciliation", done: false },
     ],
     whoHeading: "Built for teams like yours",
     whoSubtitle:

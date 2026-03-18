@@ -146,8 +146,8 @@ export default function ZhHome() {
                     {d.moneyBullets[1]}
                     <CexBadge name="OKX" />
                     <CexBadge name="Kraken" />
-                    <CexBadge name="Coinbase" comingSoon />
-                    <CexBadge name="Binance" comingSoon />
+                    <CexBadge name="Coinbase" />
+                    <CexBadge name="Binance" />
                   </span>
                 </li>
                 <li className="flex items-start gap-3 text-sm md:text-base font-medium">

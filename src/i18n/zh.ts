@@ -179,11 +179,13 @@ export const zh: Dictionary = {
     roadmapDesc:
       "Motivation Money \u6B63\u5728\u4ECE\u4E00\u6B3E\u5F3A\u5927\u7684\u4ED8\u6B3E\u4EA7\u54C1\uFF0C\u53D1\u5C55\u4E3A\u5B8C\u6574\u7684\u8D22\u52A1\u8FD0\u8425\u7CFB\u7EDF\u2014\u2014\u6536\u53D6\u5BA2\u6237\u6536\u5165\u3001\u652F\u4ED8\u56E2\u961F\u85AA\u8D44\uFF0C\u5168\u90E8\u5728\u4E00\u4E2A\u5730\u65B9\u5B8C\u6210\u3002",
     roadmapItems: [
-      "\u7A33\u5B9A\u5E01\u5BA2\u6237\u6536\u6B3E\u53D1\u7968\u6A21\u5757",
-      "\u5E26\u94B1\u5305\u5730\u5740\u548C\u4E8C\u7EF4\u7801\u7684\u516C\u5F00\u6536\u6B3E\u9875",
-      "\u94FE\u4E0A\u4ED8\u6B3E\u68C0\u6D4B\u4E0E\u81EA\u52A8\u5BF9\u8D26",
-      "REST API v1 \u548C MCP \u670D\u52A1\u5668\uFF0C\u652F\u6301 AI \u667A\u80FD\u4F53\u8BBF\u95EE",
-      "\u66F4\u591A CEX \u9002\u914D\u5668\u2014\u2014Coinbase\u3001Binance\u3001Bybit",
+      { text: "REST API v1 — 25+ 端点、CLI 和 OpenAPI 规范", done: true },
+      { text: "多交易所支持 — OKX、Coinbase、Binance 和 Kraken", done: true },
+      { text: "操作员角色系统，支持细粒度逐操作员权限", done: true },
+      { text: "MCP 服务器，支持 AI 智能体访问（Claude、GPT、自定义智能体）", done: false },
+      { text: "稳定币客户收款发票模块", done: false },
+      { text: "带钱包地址和二维码的公开收款页", done: false },
+      { text: "链上付款检测与自动对账", done: false },
     ],
     whoHeading: "\u4E3A\u50CF\u60A8\u8FD9\u6837\u7684\u56E2\u961F\u800C\u5EFA",
     whoSubtitle:

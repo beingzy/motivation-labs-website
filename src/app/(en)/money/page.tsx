@@ -296,8 +296,9 @@ export default function MoneyPage() {
                 <div className="flex items-center gap-2 flex-wrap mb-5">
                   <span className="text-xs font-black text-black/40 uppercase tracking-wider">Supported exchanges</span>
                   <CexBadge name="OKX" size="md" />
-                  <CexBadge name="Coinbase" size="md" comingSoon />
-                  <CexBadge name="Binance" size="md" comingSoon />
+                  <CexBadge name="Coinbase" size="md" />
+                  <CexBadge name="Binance" size="md" />
+                  <CexBadge name="Kraken" size="md" />
                 </div>
                 <ul className="space-y-2 text-sm font-medium text-notion-gray">
                   <li className="flex items-center gap-2">
@@ -511,19 +512,21 @@ export default function MoneyPage() {
             </div>
             <ul className="space-y-3">
               {[
-                "Invoice module for stablecoin client collections",
-                "Public payment pages with wallet address and QR code",
-                "On-chain payment detection with auto-reconciliation",
-                "REST API v1 and MCP server for AI agent access",
-                "Additional CEX adapters — Kraken, Bybit",
+                { text: "REST API v1 with 25+ endpoints, CLI, and OpenAPI spec", done: true },
+                { text: "Multi-CEX support — OKX, Coinbase, Binance, and Kraken", done: true },
+                { text: "Operator role system with granular per-operator permissions", done: true },
+                { text: "MCP server for AI agent access (Claude, GPT, custom agents)", done: false },
+                { text: "Invoice module for stablecoin client collections", done: false },
+                { text: "Public payment pages with wallet address and QR code", done: false },
+                { text: "On-chain payment detection with auto-reconciliation", done: false },
               ].map((item) => (
                 <li
-                  key={item}
+                  key={item.text}
                   className="flex items-start gap-3 p-4 border border-white/10 bg-white/5"
                 >
-                  <span className="mt-1 w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
-                  <span className="text-sm font-medium text-white/70">
-                    {item}
+                  <span className={`mt-1 w-1.5 h-1.5 rounded-full shrink-0 ${item.done ? "bg-emerald-400" : "bg-white/30"}`} />
+                  <span className={`text-sm font-medium ${item.done ? "text-emerald-400" : "text-white/70"}`}>
+                    {item.text}
                   </span>
                 </li>
               ))}

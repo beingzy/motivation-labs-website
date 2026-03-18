@@ -227,8 +227,8 @@ export default function ZhMoneyPage() {
                   <span className="text-xs font-black text-black/40 uppercase tracking-wider">{d.supportedExchanges}</span>
                   <CexBadge name="OKX" size="md" />
                   <CexBadge name="Kraken" size="md" />
-                  <CexBadge name="Coinbase" size="md" comingSoon />
-                  <CexBadge name="Binance" size="md" comingSoon />
+                  <CexBadge name="Coinbase" size="md" />
+                  <CexBadge name="Binance" size="md" />
                 </div>
                 <ul className="space-y-2 text-sm font-medium text-notion-gray">
                   {d.step3Bullets.map((b) => (
@@ -621,12 +621,12 @@ export default function ZhMoneyPage() {
             <ul className="space-y-3">
               {d.roadmapItems.map((item) => (
                 <li
-                  key={item}
+                  key={item.text}
                   className="flex items-start gap-3 p-4 border border-white/10 bg-white/5"
                 >
-                  <span className="mt-1 w-1.5 h-1.5 rounded-full bg-white/30 shrink-0" />
-                  <span className="text-sm font-medium text-white/70">
-                    {item}
+                  <span className={`mt-1 w-1.5 h-1.5 rounded-full shrink-0 ${item.done ? "bg-emerald-400" : "bg-white/30"}`} />
+                  <span className={`text-sm font-medium ${item.done ? "text-emerald-400" : "text-white/70"}`}>
+                    {item.text}
                   </span>
                 </li>
               ))}

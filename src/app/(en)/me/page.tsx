@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { productJsonLd } from "@/lib/structured-data";
+import WaitlistForm from "@/components/WaitlistForm";
 
 const product = getProduct("me")!;
 
@@ -169,12 +170,7 @@ export default function MePage() {
           <p className="text-base md:text-lg text-black/70 mb-10 font-medium">
             Join a growing community of people who keep commitments — together.
           </p>
-          <Link
-            href="/"
-            className="btn-notion inline-block bg-black text-white px-10 py-5 rounded-md font-black text-sm uppercase tracking-wider hover:bg-black/80"
-          >
-            ← Back to Motivation Labs
-          </Link>
+          <WaitlistForm product="Motivate Me" accentClass="bg-blue-500" />
         </div>
       </section>
     </>

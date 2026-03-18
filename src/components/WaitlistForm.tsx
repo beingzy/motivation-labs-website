@@ -6,33 +6,73 @@ interface WaitlistFormProps {
   product: string;
   accentClass?: string;
   buttonClass?: string;
+  labels?: {
+    placeholder?: string;
+    button?: string;
+    loading?: string;
+    success?: string;
+    successDetail?: string;
+    error?: string;
+  };
 }
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export default function WaitlistForm({
   product,
   accentClass = "bg-black",
   buttonClass = "btn-notion bg-black text-white px-10 py-5 rounded-md font-black text-base uppercase tracking-wider hover:bg-black/80",
+  labels,
 }: WaitlistFormProps) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
+  const t = {
+    placeholder: labels?.placeholder ?? "your@email.com",
+    button: labels?.button ?? "Join Waitlist",
+    loading: labels?.loading ?? "Joining...",
+    success: labels?.success ?? "You\u2019re on the list",
+    successDetail: labels?.successDetail ?? `We\u2019ll reach out to {email} when ${product} is ready for you.`,
+    error: labels?.error ?? "Please enter a valid email address.",
+  };
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email || !email.includes("@")) {
-      setErrorMsg("Please enter a valid email address.");
+      setErrorMsg(t.error);
       setStatus("error");
       return;
     }
     setStatus("loading");
     setErrorMsg("");
 
-    // TODO: Wire up to Supabase or Loops/Resend
-    // For now, simulate a successful submission
-    await new Promise((r) => setTimeout(r, 800));
-
-    console.log(`[Waitlist] product=${product} email=${email}`);
-    setStatus("success");
+    try {
+      if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            Prefer: "return=minimal",
+          },
+          body: JSON.stringify({ email, product }),
+        });
+        if (!res.ok && res.status !== 409) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+      } else {
+        // Fallback: log locally when Supabase is not configured
+        console.log(`[Waitlist] product=${product} email=${email}`);
+        await new Promise((r) => setTimeout(r, 400));
+      }
+      setStatus("success");
+    } catch {
+      setErrorMsg("Something went wrong. Please try again.");
+      setStatus("error");
+    }
   }
 
   if (status === "success") {
@@ -43,12 +83,11 @@ export default function WaitlistForm({
         >
           <span className={`w-3 h-3 rounded-full ${accentClass} shrink-0`} />
           <span className="font-black text-sm uppercase tracking-wider">
-            You&apos;re on the list
+            {t.success}
           </span>
         </div>
         <p className="text-sm text-black/60 font-medium">
-          We&apos;ll reach out to <strong>{email}</strong> when{" "}
-          {product} is ready for you.
+          {t.successDetail.replace("{email}", email)}
         </p>
       </div>
     );
@@ -64,7 +103,7 @@ export default function WaitlistForm({
             setEmail(e.target.value);
             if (status === "error") setStatus("idle");
           }}
-          placeholder="your@email.com"
+          placeholder={t.placeholder}
           className="flex-1 px-5 py-4 border-2 border-black font-medium text-sm focus:outline-none focus:ring-2 focus:ring-black/20 placeholder:text-black/30"
           disabled={status === "loading"}
           required
@@ -74,7 +113,7 @@ export default function WaitlistForm({
           disabled={status === "loading"}
           className={`${buttonClass} disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap`}
         >
-          {status === "loading" ? "Joining..." : "Join Waitlist"}
+          {status === "loading" ? t.loading : t.button}
         </button>
       </div>
       {status === "error" && (

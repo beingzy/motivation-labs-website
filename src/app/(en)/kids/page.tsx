@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { productJsonLd } from "@/lib/structured-data";
+import WaitlistForm from "@/components/WaitlistForm";
 
 const product = getProduct("kids")!;
 
@@ -43,12 +43,7 @@ export default function KidsPage() {
           <p className="text-xl md:text-2xl text-black/70 mb-12 font-medium leading-relaxed max-w-2xl">
             {product.description}
           </p>
-          <Link
-            href="/"
-            className="btn-notion inline-block bg-white text-black px-8 py-4 rounded-md font-black hover:bg-amber-50 uppercase tracking-wider text-sm"
-          >
-            ← Back to Motivation Labs
-          </Link>
+          <WaitlistForm product="Motivate Kids" accentClass="bg-amber-500" />
         </div>
       </section>
     </>

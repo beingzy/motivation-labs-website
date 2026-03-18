@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { zh } from "@/i18n";
+import WaitlistForm from "@/components/WaitlistForm";
 
 const product = getProduct("kids")!;
 const d = zh.kids;
@@ -16,6 +16,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "zh_CN",
   },
+};
+
+const zhLabels = {
+  placeholder: "您的邮箱地址",
+  button: "加入等候名单",
+  loading: "提交中...",
+  success: "您已加入名单",
+  successDetail: "当 Motivate Kids 准备就绪时，我们会通过 {email} 联系您。",
+  error: "请输入有效的邮箱地址。",
 };
 
 export default function ZhKidsPage() {
@@ -35,12 +44,7 @@ export default function ZhKidsPage() {
           <p className="text-xl md:text-2xl text-black/70 mb-12 font-medium leading-relaxed max-w-2xl">
             {product.description}
           </p>
-          <Link
-            href="/zh"
-            className="btn-notion inline-block bg-white text-black px-8 py-4 rounded-md font-black hover:bg-amber-50 uppercase tracking-wider text-sm"
-          >
-            {d.backButton}
-          </Link>
+          <WaitlistForm product="Motivate Kids" accentClass="bg-amber-500" labels={zhLabels} />
         </div>
       </section>
     </>

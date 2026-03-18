@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { productJsonLd } from "@/lib/structured-data";
+import WaitlistForm from "@/components/WaitlistForm";
 
 const product = getProduct("team")!;
 
@@ -167,12 +168,7 @@ export default function TeamPage() {
             See how Motivation Team can streamline your onboarding, SaaS
             management, and API governance.
           </p>
-          <Link
-            href="/"
-            className="btn-notion inline-block bg-black text-white px-10 py-5 rounded-md font-black text-sm uppercase tracking-wider hover:bg-black/80"
-          >
-            ← Back to Motivation Labs
-          </Link>
+          <WaitlistForm product="Motivation Team" accentClass="bg-violet-500" />
         </div>
       </section>
     </>

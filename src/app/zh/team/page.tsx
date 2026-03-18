@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getProduct } from "@/lib/products";
 import { zh } from "@/i18n";
+import WaitlistForm from "@/components/WaitlistForm";
 
 const product = getProduct("team")!;
 const d = zh.team;
@@ -128,12 +129,18 @@ export default function ZhTeamPage() {
           <p className="text-base md:text-lg text-black/70 mb-10 font-medium">
             {d.ctaSubtitle}
           </p>
-          <Link
-            href="/zh"
-            className="btn-notion inline-block bg-black text-white px-10 py-5 rounded-md font-black text-sm uppercase tracking-wider hover:bg-black/80"
-          >
-            ← 返回 Motivation Labs
-          </Link>
+          <WaitlistForm
+            product="Motivation Team"
+            accentClass="bg-violet-500"
+            labels={{
+              placeholder: "您的邮箱地址",
+              button: "加入等候名单",
+              loading: "提交中...",
+              success: "您已加入名单",
+              successDetail: "当 Motivation Team 准备就绪时，我们会通过 {email} 联系您。",
+              error: "请输入有效的邮箱地址。",
+            }}
+          />
         </div>
       </section>
     </>

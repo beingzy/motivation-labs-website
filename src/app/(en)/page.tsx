@@ -1,9 +1,38 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AlphabetGrid from "@/components/AlphabetGrid";
 import ScreenshotStack from "@/components/ScreenshotStack";
 import CexBadge from "@/components/CexBadge";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/structured-data";
+
+export const metadata: Metadata = {
+  title: "Motivation Labs | AI-Native Software Studio — Stablecoin Payroll, Habit Apps & Team Ops",
+  description:
+    "Motivation Labs builds AI-native tools for serious teams and individuals. Stablecoin payroll (Motivation Money), habit formation (Motivate Me), kids' mindset training (Motivate Kids), and team operations (Motivation Team).",
+  alternates: {
+    canonical: "/",
+    languages: { en: "/", zh: "/zh" },
+  },
+  openGraph: {
+    title: "Motivation Labs | AI-Native Software Studio",
+    description:
+      "Building AI-native tools for serious teams: stablecoin payroll, habit formation, kids' education, and team operations.",
+    type: "website",
+    locale: "en_US",
+    alternateLocale: "zh_CN",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "Motivation Labs" }],
+  },
+  keywords: [
+    "stablecoin payroll",
+    "crypto payroll software",
+    "USDC payments",
+    "AI-native software",
+    "global team payments",
+    "self-custody treasury",
+    "motivation labs",
+  ],
+};
 
 export default function Home() {
   return (

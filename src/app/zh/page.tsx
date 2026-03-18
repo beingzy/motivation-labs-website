@@ -1,9 +1,38 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import AlphabetGrid from "@/components/AlphabetGrid";
 import ScreenshotStack from "@/components/ScreenshotStack";
 import CexBadge from "@/components/CexBadge";
 import { zh } from "@/i18n";
+
+export const metadata: Metadata = {
+  title: "Motivation Labs | AI原生软件工作室 — 稳定币薪资、习惯养成与团队运营",
+  description:
+    "Motivation Labs 打造面向认真团队和个人的AI原生工具。稳定币薪资发放（Motivation Money）、习惯养成（Motivate Me）、儿童思维训练（Motivate Kids）和团队运营系统（Motivation Team）。",
+  alternates: {
+    canonical: "/zh",
+    languages: { en: "/", zh: "/zh" },
+  },
+  openGraph: {
+    title: "Motivation Labs | AI原生软件工作室",
+    description:
+      "为认真团队打造AI原生工具：稳定币薪资发放、习惯养成、儿童教育和团队运营。",
+    type: "website",
+    locale: "zh_CN",
+    alternateLocale: "en_US",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: "Motivation Labs" }],
+  },
+  keywords: [
+    "稳定币薪资",
+    "加密货币工资",
+    "USDC支付",
+    "AI原生软件",
+    "全球团队支付",
+    "自托管国库",
+    "motivation labs",
+  ],
+};
 
 const d = zh.home;
 

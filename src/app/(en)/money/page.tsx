@@ -394,6 +394,104 @@ export default function MoneyPage() {
         </div>
       </section>
 
+      {/* ── Security & Privacy ── */}
+      <section className="py-24 md:py-36 bg-[#f8f8f7] border-b-2 border-black" id="security">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16 md:mb-20">
+            <div className="inline-block px-3 py-1 border-2 border-black text-[10px] font-black uppercase tracking-[0.2em] mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">Security & Privacy</div>
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight leading-tight">Your Treasury. Your Privacy.</h2>
+          </div>
+
+          {/* 01 */}
+          <div className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 md:p-10 mb-10">
+            <div className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-14 items-center">
+              <div className="flex flex-col md:flex-row items-center gap-5 md:gap-0">
+                <div className="flex md:flex-col gap-3 shrink-0">
+                  <div className="w-14 h-14 rounded-full bg-[#2775CA] border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center rotate-[-8deg]"><span className="text-white text-lg font-black">$</span></div>
+                  <div className="w-14 h-14 rounded-full bg-[#26A17B] border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center rotate-[10deg]"><span className="text-white text-lg font-black">T</span></div>
+                </div>
+                <svg className="w-12 h-8 shrink-0 hidden md:block" viewBox="0 0 48 32" fill="none"><path d="M4 16 C12 8, 20 24, 28 12 C32 8, 38 16, 44 14" stroke="black" strokeWidth="2" strokeDasharray="4 4" strokeLinecap="round" /><path d="M40 10 L44 14 L39 17" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                <svg className="w-8 h-10 shrink-0 md:hidden" viewBox="0 0 32 40" fill="none"><path d="M16 4 C8 12, 24 18, 12 26 C8 30, 16 34, 16 36" stroke="black" strokeWidth="2" strokeDasharray="4 4" strokeLinecap="round" /><path d="M12 33 L16 36 L20 33" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                <div className="shrink-0">
+                  <div className="border-2 border-black bg-black p-3 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                    <div className="grid grid-cols-2 gap-2 mb-2">
+                      {[{ src: "/images/exchanges/okx.png", alt: "OKX" }, { src: "/images/exchanges/coinbase.png", alt: "Coinbase" }].map((ex) => (
+                        <div key={ex.alt} className="w-9 h-9 bg-white/10 border border-white/20 flex items-center justify-center"><Image src={ex.src} alt={ex.alt} width={22} height={22} className="object-contain" /></div>
+                      ))}
+                    </div>
+                    <div className="text-[8px] font-black text-white/50 text-center uppercase tracking-wider">Your CEX</div>
+                  </div>
+                </div>
+                <svg className="w-10 h-16 shrink-0 hidden md:block" viewBox="0 0 40 64" fill="none"><path d="M4 10 C12 6, 24 14, 36 8" stroke="black" strokeWidth="1.5" strokeDasharray="3 3" strokeLinecap="round" opacity="0.3" /><path d="M33 5 L36 8 L32 10" stroke="black" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" /><path d="M4 32 C14 28, 22 36, 36 30" stroke="black" strokeWidth="1.5" strokeDasharray="3 3" strokeLinecap="round" opacity="0.3" /><path d="M33 27 L36 30 L32 32" stroke="black" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" /><path d="M4 54 C10 50, 26 58, 36 52" stroke="black" strokeWidth="1.5" strokeDasharray="3 3" strokeLinecap="round" opacity="0.3" /><path d="M33 49 L36 52 L32 54" stroke="black" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" /></svg>
+                <svg className="w-16 h-8 shrink-0 md:hidden" viewBox="0 0 64 32" fill="none"><path d="M10 4 C6 12, 14 20, 8 28" stroke="black" strokeWidth="1.5" strokeDasharray="3 3" strokeLinecap="round" opacity="0.3" /><path d="M32 4 C28 12, 36 20, 30 28" stroke="black" strokeWidth="1.5" strokeDasharray="3 3" strokeLinecap="round" opacity="0.3" /><path d="M54 4 C50 12, 58 20, 52 28" stroke="black" strokeWidth="1.5" strokeDasharray="3 3" strokeLinecap="round" opacity="0.3" /></svg>
+                <div className="flex md:flex-col gap-3 shrink-0">
+                  {[{ avatar: "/images/money/01_male_short_side_parted_black_hair_open_mouth.png", name: "Alex" }, { avatar: "/images/money/04_female_long_straight_black_hair_gentle_smile.png", name: "Sarah" }, { avatar: "/images/money/07_male_curly_dark_hair_aviator_glasses_open_grin.png", name: "Marcus" }].map((person) => (
+                    <div key={person.name} className="flex items-center gap-2">
+                      <Image src={person.avatar} alt={person.name} width={40} height={40} className="w-10 h-10 rounded-full object-cover shadow-[2px_2px_0px_0px_rgba(0,0,0,0.15)]" />
+                      <div className="hidden md:block"><div className="text-[10px] font-black">{person.name}</div><div className="text-[8px] text-black/30 font-bold">Sees: Exchange</div></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div className="inline-block px-2 py-0.5 border-2 border-black text-[9px] font-black uppercase tracking-[0.2em] mb-4 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] bg-emerald-50">01 — Payment Privacy</div>
+                <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-4 leading-tight">Recipients never see<br />your treasury address.</h3>
+                <p className="text-sm text-notion-gray font-medium leading-relaxed">Payments route through your CEX. Recipients see the exchange as sender — your treasury address never appears on-chain.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 02 */}
+          <div className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-white p-6 md:p-10 mb-10">
+            <div className="grid md:grid-cols-[1fr_1.4fr] gap-10 md:gap-14 items-center">
+              <div>
+                <div className="inline-block px-2 py-0.5 border-2 border-black text-[9px] font-black uppercase tracking-[0.2em] mb-4 shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] bg-emerald-50">02 — Encryption</div>
+                <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-4 leading-tight">Encrypted before<br />it hits the database.</h3>
+                <p className="text-sm text-notion-gray font-medium leading-relaxed">AES-256-GCM with unique IVs per row. Keys are separated by category — compromising one never exposes another.</p>
+              </div>
+              <div className="flex flex-col md:flex-row items-center md:justify-between">
+                {[{ icon: "⌨️", label: "You type", accent: false }, { icon: "🔒", label: "Encrypted", accent: true }, { icon: "🗄️", label: "Stored", accent: false }, { icon: "⚡", label: "Execute & clear", accent: false }].map((stage, i) => (
+                  <div key={stage.label} className="contents">
+                    <div className="flex flex-col items-center gap-2 shrink-0">
+                      <div className={`w-14 h-14 md:w-16 md:h-16 border-2 border-black flex items-center justify-center text-xl md:text-2xl shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] ${stage.accent ? "bg-black" : "bg-white"}`}>{stage.icon}</div>
+                      <div className="text-[9px] font-black uppercase tracking-wider text-black/60">{stage.label}</div>
+                    </div>
+                    {i < 3 && (<svg className="w-8 h-5 shrink-0 hidden md:block" viewBox="0 0 32 20" fill="none"><path d="M3 10 C8 5, 16 15, 24 8 C26 6, 28 10, 29 9" stroke="black" strokeWidth="1.5" strokeDasharray="3 3" strokeLinecap="round" /><path d="M26 6 L29 9 L26 12" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 03 */}
+          <div className="border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] bg-black p-6 md:p-10 mb-10">
+            <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+              <div>
+                <div className="inline-block px-2 py-0.5 border border-white/20 text-[9px] font-black uppercase tracking-[0.2em] mb-4 text-white/50">03 — Control & Audit</div>
+                <h3 className="text-2xl md:text-3xl font-black tracking-tight mb-4 leading-tight text-white">You verify everything.<br />We access nothing.</h3>
+                <p className="text-sm text-white/50 font-medium leading-relaxed">40+ auditable action types. Whitelist-only payments. We never custody funds or see credentials in plaintext.</p>
+              </div>
+              <div className="border border-white/10 overflow-hidden">
+                <div className="grid grid-cols-[1fr_130px] border-b border-white/10 bg-white/5">
+                  <div className="p-3 text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Item</div>
+                  <div className="p-3 text-[9px] font-black uppercase tracking-[0.2em] text-white/30">Our Access</div>
+                </div>
+                {[{ item: "Safe private keys", access: "None" }, { item: "CEX login credentials", access: "None" }, { item: "Recipient identity", access: "None" }, { item: "Your funds", access: "Never custodied" }].map((row, i) => (
+                  <div key={row.item} className={`grid grid-cols-[1fr_130px] ${i < 3 ? "border-b border-white/5" : ""}`}>
+                    <div className="p-3 text-xs font-medium text-white/70">{row.item}</div>
+                    <div className="p-3 text-xs font-black text-emerald-400">{row.access}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <Link href="https://docs.motivationlabs.ai/money/data-privacy" className="text-sm font-black uppercase tracking-wider underline decoration-2 hover:text-black/70">Read the full Data Privacy & Security guide →</Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── Roadmap ── */}
       <section className="py-24 bg-black text-white">
         <div className="max-w-6xl mx-auto px-6">

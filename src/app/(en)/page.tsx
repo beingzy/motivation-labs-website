@@ -137,6 +137,7 @@ export default function Home() {
                   <span className="flex items-center gap-1.5 flex-wrap">
                     Multi-CEX routing —
                     <CexBadge name="OKX" />
+                    <CexBadge name="Kraken" />
                     <CexBadge name="Coinbase" comingSoon />
                     <CexBadge name="Binance" comingSoon />
                   </span>

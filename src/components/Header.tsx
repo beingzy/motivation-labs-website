@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { trackEvent } from "./GoogleAnalytics";
@@ -78,9 +79,13 @@ export default function Header({ locale = "en", dict }: HeaderProps) {
   return (
     <header className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between relative">
       <Link href={homeHref} className="flex items-center space-x-3">
-        <div className="w-9 h-9 bg-black rounded-lg flex items-center justify-center border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-          <span className="text-white font-bold text-xl">M</span>
-        </div>
+        <Image
+          src="/images/motivation-labs-logo.png"
+          alt="Motivation Labs"
+          width={36}
+          height={36}
+          className="rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
+        />
         <span className="font-bold text-xl tracking-tight">Motivation Labs</span>
       </Link>
 

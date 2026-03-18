@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary } from "@/i18n";
 
@@ -22,8 +23,17 @@ export default function Footer({ locale = "en", dict }: FooterProps) {
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           {/* Brand */}
           <div>
-            <div className="font-black text-2xl mb-3 tracking-tight">
-              Motivation Labs
+            <div className="flex items-center gap-3 mb-3">
+              <Image
+                src="/images/motivation-labs-logo.png"
+                alt="Motivation Labs"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
+              <span className="font-black text-2xl tracking-tight">
+                Motivation Labs
+              </span>
             </div>
             <p className="text-black/60 text-sm leading-relaxed font-medium max-w-xs">
               {f?.tagline ??

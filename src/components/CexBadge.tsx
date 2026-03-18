@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface CexBadgeProps {
-  name: "OKX" | "Coinbase" | "Binance";
+  name: "OKX" | "Kraken" | "Coinbase" | "Binance";
   comingSoon?: boolean;
   size?: "sm" | "md";
 }
@@ -13,9 +13,15 @@ const config = {
     text: "text-white",
     href: "https://www.okx.com/account/register",
   },
+  Kraken: {
+    logo: "/images/exchanges/kraken.png",
+    bg: "bg-[#5741D9]",
+    text: "text-white",
+    href: "https://www.kraken.com/sign-up",
+  },
   Coinbase: {
     logo: "/images/exchanges/coinbase.png",
-    bg: "bg-[#1652F0]",
+    bg: "bg-[#0052FF]",
     text: "text-white",
     href: "https://www.coinbase.com/signup",
   },

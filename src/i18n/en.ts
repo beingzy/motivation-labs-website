@@ -181,7 +181,7 @@ export const en = {
       "Public payment pages with wallet address and QR code",
       "On-chain payment detection with auto-reconciliation",
       "REST API v1 and MCP server for AI agent access",
-      "Additional CEX adapters — Kraken, Bybit",
+      "Additional CEX adapters — Coinbase, Binance, Bybit",
     ],
     whoHeading: "Built for teams like yours",
     whoSubtitle:

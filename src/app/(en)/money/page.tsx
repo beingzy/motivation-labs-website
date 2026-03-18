@@ -82,7 +82,7 @@ export default function MoneyPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="https://motivation-pay.vercel.app"
+                  href="https://app.motivation.money"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-notion bg-black text-white px-8 py-4 rounded-md font-black hover:bg-black/80 uppercase tracking-wider text-sm text-center"
@@ -756,7 +756,7 @@ export default function MoneyPage() {
             Motivation Money is live and ready to use. No waitlist — get started today.
           </p>
           <a
-            href="https://motivation-pay.vercel.app"
+            href="https://app.motivation.money"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-notion inline-block bg-black text-white px-10 py-5 rounded-md font-black text-base uppercase tracking-wider hover:bg-black/80"
